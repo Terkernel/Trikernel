@@ -11,14 +11,11 @@ import {
   ArrowRight,
   CheckCircle,
 } from "lucide-react";
-import { useTranslation } from "~/providers/language-provider";
+import { useLanguage } from "~/providers/language-provider";
 import { LanguageSwitcher } from "~/components/language-switcher";
 
 export function LandingPageClient() {
-  const translation = useTranslation();
-  
-  // Fallback function if translation context is not available
-  const t = translation?.t ?? ((key: string) => key.split('.').pop() ?? key);
+  const { t } = useLanguage();
 
   return (
     <div className="min-h-screen bg-background">

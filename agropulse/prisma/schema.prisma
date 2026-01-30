@@ -68,6 +68,15 @@ model User {
     totalRatings  Int       @default(0)
     avgRating     Float     @default(0)
     
+    // Security fields
+    isActive              Boolean   @default(true)
+    failedLoginAttempts   Int       @default(0)
+    lockedUntil           DateTime?
+    lastLoginAt           DateTime?
+    passwordChangedAt     DateTime?
+    twoFactorEnabled      Boolean   @default(false)
+    twoFactorSecret       String?
+    
     createdAt     DateTime  @default(now())
     updatedAt     DateTime  @updatedAt
 
@@ -91,6 +100,12 @@ model User {
     
     // Notifications
     notifications   Notification[]
+    
+    // Audit logs
+    auditLogs      AuditLog[]
+    
+    // Blockchain transactions
+    blockchainTransactions BlockchainTransaction[]
 
     @@index([role])
     @@index([city, state])
@@ -323,4 +338,70 @@ model Notification {
     @@index([userId])
     @@index([isRead])
     @@index([createdAt])
+}
+
+
+enum AuditAction {
+    SIGN_IN
+    SIGN_OUT
+    AUTH_ATTEMPT
+    PASSWORD_CHANGE
+    PROFILE_UPDATE
+    LISTING_CREATE
+    LISTING_UPDATE
+    LISTING_DELETE
+    BID_CREATE
+    BID_UPDATE
+    PAYMENT_INITIATED
+    PAYMENT_COMPLETED
+    MESSAGE_SENT
+    ADMIN_ACTION
+}
+
+model AuditLog {
+    id          String      @id @default(cuid())
+    userId      String?
+    user        User?       @relation(fields: [userId], references: [id], onDelete: SetNull)
+    
+    action      AuditAction
+    details     Json        // Store additional context
+    ipAddress   String?
+    userAgent   String?
+    
+    createdAt   DateTime    @default(now())
+    
+    @@index([userId])
+    @@index([action])
+    @@index([createdAt])
+}
+
+// ==================== BLOCKCHAIN TRANSACTIONS ====================
+
+enum TransactionType {
+    LISTING_CREATED
+    BID_PLACED
+    BID_ACCEPTED
+    PAYMENT_COMPLETED
+    RATING_GIVEN
+    CONTRACT_SIGNED
+}
+
+model BlockchainTransaction {
+    id                String          @id @default(cuid())
+    userId            String
+    user              User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+    
+    transactionType   TransactionType
+    data              Json            // Transaction data
+    dataHash          String          // Hash of transaction data
+    blockHash         String          // Hash of the block
+    previousBlockHash String?         // Hash of previous block
+    nonce             Int             // Proof of work nonce
+    
+    createdAt         DateTime        @default(now())
+    
+    @@index([userId])
+    @@index([transactionType])
+    @@index([blockHash])
+    @@unique([blockHash])
 }

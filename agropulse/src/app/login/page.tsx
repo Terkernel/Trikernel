@@ -11,14 +11,13 @@ import { Input } from "~/components/ui/input";
 import { Label } from "~/components/ui/label";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "~/components/ui/card";
 import { useToast } from "~/hooks/use-toast";
-import { useTranslation } from "~/providers/language-provider";
+import { useLanguage } from "~/providers/language-provider";
 import { LanguageSwitcher } from "~/components/language-switcher";
 
 export default function LoginPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const translation = useTranslation();
-  const t = translation?.t ?? ((key: string) => key.split('.').pop() ?? key);
+  const { t } = useLanguage();
   const [isLoading, setIsLoading] = useState(false);
   const [formData, setFormData] = useState({
     email: "",

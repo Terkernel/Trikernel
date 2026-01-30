@@ -4,6 +4,7 @@ import { SessionProvider } from "next-auth/react";
 import { auth } from "~/server/auth";
 import { DashboardNav } from "~/components/dashboard/nav";
 import { Toaster } from "~/components/ui/toaster";
+import { LanguageProvider } from "~/providers/language-provider";
 
 export default async function DashboardLayout({
   children,
@@ -18,18 +19,20 @@ export default async function DashboardLayout({
 
   return (
     <SessionProvider session={session}>
-      <div className="min-h-screen bg-gray-50">
-        <DashboardNav />
-        
-        {/* Main content area */}
-        <main className="lg:ml-64 pt-14 lg:pt-16 min-h-screen">
-          <div className="p-4 lg:p-6">
-            {children}
-          </div>
-        </main>
-        
-        <Toaster />
-      </div>
+      <LanguageProvider>
+        <div className="min-h-screen bg-gray-50">
+          <DashboardNav />
+          
+          {/* Main content area */}
+          <main className="lg:ml-64 pt-14 lg:pt-16 min-h-screen">
+            <div className="p-4 lg:p-6">
+              {children}
+            </div>
+          </main>
+          
+          <Toaster />
+        </div>
+      </LanguageProvider>
     </SessionProvider>
   );
 }

@@ -26,7 +26,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "~/components/ui/popover";
-import { useTranslation } from "~/providers/language-provider";
+import { useLanguage } from "~/providers/language-provider";
 
 const notificationIcons: Record<string, React.ComponentType<{ className?: string }>> = {
   BID_RECEIVED: Gavel,
@@ -51,7 +51,7 @@ const notificationColors: Record<string, string> = {
 };
 
 export function NotificationDropdown() {
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
 
   const { data, isLoading, refetch } = api.notification.getRecent.useQuery(

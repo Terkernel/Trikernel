@@ -10,10 +10,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Spinner } from "~/components/ui/spinner";
 import { formatCurrency, getInitials } from "~/lib/utils";
 import { api } from "~/trpc/react";
+import { useLanguage } from "~/providers/language-provider";
 
 export function BuyerDashboard() {
   const { data: stats, isLoading: statsLoading } = api.bid.getStats.useQuery();
   const { data: recommendationsData, isLoading: recsLoading } = api.matchmaking.getRecommendationsForBuyer.useQuery();
+  const { t } = useLanguage();
 
   if (statsLoading) {
     return (
@@ -28,13 +30,13 @@ export function BuyerDashboard() {
       {/* Welcome Section */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back! 👋</h1>
-          <p className="text-muted-foreground">Find the best crops from trusted farmers.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("dashboard.welcomeBack")} 👋</h1>
+          <p className="text-muted-foreground">{t("dashboard.buyerWelcomeDesc")}</p>
         </div>
         <Button asChild size="lg" className="gap-2">
           <Link href="/dashboard/browse">
             <Search className="h-5 w-5" />
-            Browse Crops
+            {t("nav.browse")}
           </Link>
         </Button>
       </div>
@@ -43,54 +45,54 @@ export function BuyerDashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Bids</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.activeBids")}</CardTitle>
             <ShoppingCart className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.activeBids ?? 0}</div>
             <p className="text-xs text-muted-foreground">
-              pending bids on crops
+              {t("dashboard.stats.activeBidsDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Accepted Bids</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.acceptedBids")}</CardTitle>
             <TrendingUp className="h-4 w-4 text-green-600" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">{stats?.acceptedBids ?? 0}</div>
             <p className="text-xs text-muted-foreground">
-              successful purchases
+              {t("dashboard.stats.acceptedBidsDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Spent</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.totalSpent")}</CardTitle>
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{formatCurrency(stats?.totalSpent ?? 0)}</div>
             <p className="text-xs text-muted-foreground">
-              on accepted bids
+              {t("dashboard.stats.totalSpentDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Smart Match</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.smartMatch")}</CardTitle>
             <Star className="h-4 w-4 text-secondary" />
           </CardHeader>
           <CardContent>
             <div className="text-sm font-medium text-secondary">
-              {recommendationsData?.length ?? 0} recommendations
+              {recommendationsData?.length ?? 0} {t("dashboard.stats.recommendations")}
             </div>
             <p className="text-xs text-muted-foreground">
-              Based on your preferences
+              {t("dashboard.stats.recommendationsDesc")}
             </p>
           </CardContent>
         </Card>
@@ -100,12 +102,12 @@ export function BuyerDashboard() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Recommended for You</CardTitle>
-            <CardDescription>Crops matching your preferences and location</CardDescription>
+            <CardTitle>{t("dashboard.recommendedForYou")}</CardTitle>
+            <CardDescription>{t("dashboard.recommendedDesc")}</CardDescription>
           </div>
           <Button variant="ghost" asChild>
             <Link href="/dashboard/browse">
-              View All <ArrowRight className="ml-2 h-4 w-4" />
+              {t("common.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </CardHeader>
@@ -172,10 +174,10 @@ export function BuyerDashboard() {
           ) : (
             <div className="text-center py-8 text-muted-foreground">
               <Package className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p>No recommendations yet</p>
-              <p className="text-sm">Browse crops to get personalized recommendations</p>
+              <p>{t("dashboard.noRecommendationsYet")}</p>
+              <p className="text-sm">{t("dashboard.browseForRecommendations")}</p>
               <Button asChild className="mt-3">
-                <Link href="/dashboard/browse">Browse Crops</Link>
+                <Link href="/dashboard/browse">{t("nav.browse")}</Link>
               </Button>
             </div>
           )}
@@ -192,8 +194,8 @@ export function BuyerDashboard() {
                   <Search className="h-6 w-6 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Browse Crops</h3>
-                  <p className="text-sm text-muted-foreground">Find fresh produce</p>
+                  <h3 className="font-semibold">{t("nav.browse")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("dashboard.quickActionBrowse")}</p>
                 </div>
               </div>
             </CardContent>
@@ -208,8 +210,8 @@ export function BuyerDashboard() {
                   <ShoppingCart className="h-6 w-6 text-secondary" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">My Bids</h3>
-                  <p className="text-sm text-muted-foreground">Track your bids</p>
+                  <h3 className="font-semibold">{t("nav.myBids")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("dashboard.quickActionMyBids")}</p>
                 </div>
               </div>
             </CardContent>
@@ -224,8 +226,8 @@ export function BuyerDashboard() {
                   <TrendingUp className="h-6 w-6 text-amber-500" />
                 </div>
                 <div>
-                  <h3 className="font-semibold">Market Prices</h3>
-                  <p className="text-sm text-muted-foreground">View live prices</p>
+                  <h3 className="font-semibold">{t("nav.market")}</h3>
+                  <p className="text-sm text-muted-foreground">{t("dashboard.quickActionMarket")}</p>
                 </div>
               </div>
             </CardContent>

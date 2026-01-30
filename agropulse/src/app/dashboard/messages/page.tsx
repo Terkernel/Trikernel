@@ -16,7 +16,7 @@ import { cn } from "~/lib/utils";
 
 export default function MessagesPage() {
   const searchParams = useSearchParams();
-  const userIdFromUrl = searchParams.get("user");
+  const userIdFromUrl = searchParams?.get("user") || null;
 
   const [selectedUser, setSelectedUser] = useState<string | null>(
     userIdFromUrl

@@ -12,7 +12,7 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "~/components/ui/select";
 import { useToast } from "~/hooks/use-toast";
 import { api } from "~/trpc/react";
-import { useTranslation } from "~/providers/language-provider";
+import { useLanguage } from "~/providers/language-provider";
 import { LanguageSwitcher } from "~/components/language-switcher";
 
 const INDIAN_STATES = [
@@ -26,8 +26,7 @@ const INDIAN_STATES = [
 export default function RegisterPage() {
   const router = useRouter();
   const { toast } = useToast();
-  const translation = useTranslation();
-  const t = translation?.t ?? ((key: string) => key.split('.').pop() ?? key);
+  const { t } = useLanguage();
   const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     name: "",

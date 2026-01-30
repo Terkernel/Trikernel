@@ -139,6 +139,13 @@ exports.Prisma.UserScalarFieldEnum = {
   trustScore: 'trustScore',
   totalRatings: 'totalRatings',
   avgRating: 'avgRating',
+  isActive: 'isActive',
+  failedLoginAttempts: 'failedLoginAttempts',
+  lockedUntil: 'lockedUntil',
+  lastLoginAt: 'lastLoginAt',
+  passwordChangedAt: 'passwordChangedAt',
+  twoFactorEnabled: 'twoFactorEnabled',
+  twoFactorSecret: 'twoFactorSecret',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -268,6 +275,28 @@ exports.Prisma.NotificationScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.AuditLogScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  action: 'action',
+  details: 'details',
+  ipAddress: 'ipAddress',
+  userAgent: 'userAgent',
+  createdAt: 'createdAt'
+};
+
+exports.Prisma.BlockchainTransactionScalarFieldEnum = {
+  id: 'id',
+  userId: 'userId',
+  transactionType: 'transactionType',
+  data: 'data',
+  dataHash: 'dataHash',
+  blockHash: 'blockHash',
+  previousBlockHash: 'previousBlockHash',
+  nonce: 'nonce',
+  createdAt: 'createdAt'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -275,6 +304,10 @@ exports.Prisma.SortOrder = {
 
 exports.Prisma.NullableJsonNullValueInput = {
   DbNull: Prisma.DbNull,
+  JsonNull: Prisma.JsonNull
+};
+
+exports.Prisma.JsonNullValueInput = {
   JsonNull: Prisma.JsonNull
 };
 
@@ -334,6 +367,32 @@ exports.NotificationType = exports.$Enums.NotificationType = {
   SYSTEM: 'SYSTEM'
 };
 
+exports.AuditAction = exports.$Enums.AuditAction = {
+  SIGN_IN: 'SIGN_IN',
+  SIGN_OUT: 'SIGN_OUT',
+  AUTH_ATTEMPT: 'AUTH_ATTEMPT',
+  PASSWORD_CHANGE: 'PASSWORD_CHANGE',
+  PROFILE_UPDATE: 'PROFILE_UPDATE',
+  LISTING_CREATE: 'LISTING_CREATE',
+  LISTING_UPDATE: 'LISTING_UPDATE',
+  LISTING_DELETE: 'LISTING_DELETE',
+  BID_CREATE: 'BID_CREATE',
+  BID_UPDATE: 'BID_UPDATE',
+  PAYMENT_INITIATED: 'PAYMENT_INITIATED',
+  PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
+  MESSAGE_SENT: 'MESSAGE_SENT',
+  ADMIN_ACTION: 'ADMIN_ACTION'
+};
+
+exports.TransactionType = exports.$Enums.TransactionType = {
+  LISTING_CREATED: 'LISTING_CREATED',
+  BID_PLACED: 'BID_PLACED',
+  BID_ACCEPTED: 'BID_ACCEPTED',
+  PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
+  RATING_GIVEN: 'RATING_GIVEN',
+  CONTRACT_SIGNED: 'CONTRACT_SIGNED'
+};
+
 exports.Prisma.ModelName = {
   User: 'User',
   Account: 'Account',
@@ -345,7 +404,9 @@ exports.Prisma.ModelName = {
   Rating: 'Rating',
   MandiPrice: 'MandiPrice',
   AIPrediction: 'AIPrediction',
-  Notification: 'Notification'
+  Notification: 'Notification',
+  AuditLog: 'AuditLog',
+  BlockchainTransaction: 'BlockchainTransaction'
 };
 
 /**

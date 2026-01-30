@@ -10,10 +10,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "~/components/ui/avatar";
 import { Spinner } from "~/components/ui/spinner";
 import { formatCurrency, formatRelativeTime, getInitials } from "~/lib/utils";
 import { api } from "~/trpc/react";
+import { useLanguage } from "~/providers/language-provider";
 
 export function FarmerDashboard() {
   const { data: stats, isLoading: statsLoading } = api.crop.getStats.useQuery();
   const { data: listings, isLoading: listingsLoading } = api.crop.getMyListings.useQuery({ status: undefined });
+  const { t } = useLanguage();
 
   if (statsLoading) {
     return (
@@ -28,13 +30,13 @@ export function FarmerDashboard() {
       {/* Welcome Section */}
       <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back! 👋</h1>
-          <p className="text-muted-foreground">Here&apos;s what&apos;s happening with your farm today.</p>
+          <h1 className="text-2xl font-bold text-gray-900">{t("dashboard.welcomeBack")} 👋</h1>
+          <p className="text-muted-foreground">{t("dashboard.farmerWelcomeDesc")}</p>
         </div>
         <Button asChild size="lg" className="gap-2">
           <Link href="/dashboard/listings/new">
             <Plus className="h-5 w-5" />
-            New Listing
+            {t("dashboard.newListing")}
           </Link>
         </Button>
       </div>
@@ -43,52 +45,52 @@ export function FarmerDashboard() {
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Active Listings</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.activeListings")}</CardTitle>
             <Package className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.activeListings ?? 0}</div>
             <p className="text-xs text-muted-foreground">
-              crops available for bidding
+              {t("dashboard.stats.activeListingsDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Total Bids</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.totalBids")}</CardTitle>
             <Gavel className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold">{stats?.totalBids ?? 0}</div>
             <p className="text-xs text-muted-foreground">
-              bids received on your crops
+              {t("dashboard.stats.totalBidsDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card>
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">Sold Crops</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.soldCrops")}</CardTitle>
             <TrendingUp className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-green-600">{stats?.soldListings ?? 0}</div>
             <p className="text-xs text-muted-foreground">
-              successfully sold this month
+              {t("dashboard.stats.soldCropsDesc")}
             </p>
           </CardContent>
         </Card>
 
         <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
           <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-sm font-medium">AI Insights</CardTitle>
+            <CardTitle className="text-sm font-medium">{t("dashboard.stats.aiInsights")}</CardTitle>
             <Sparkles className="h-4 w-4 text-primary" />
           </CardHeader>
           <CardContent>
-            <div className="text-sm font-medium text-primary">Price predictions available</div>
+            <div className="text-sm font-medium text-primary">{t("dashboard.stats.aiInsightsDesc")}</div>
             <p className="text-xs text-muted-foreground">
-              Get AI-powered selling suggestions
+              {t("dashboard.stats.aiInsightsSubDesc")}
             </p>
           </CardContent>
         </Card>
@@ -98,12 +100,12 @@ export function FarmerDashboard() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>Recent Bids</CardTitle>
-            <CardDescription>Latest bids on your crop listings</CardDescription>
+            <CardTitle>{t("dashboard.recentBids")}</CardTitle>
+            <CardDescription>{t("dashboard.recentBidsDesc")}</CardDescription>
           </div>
           <Button variant="ghost" asChild>
             <Link href="/dashboard/bids">
-              View All <ArrowRight className="ml-2 h-4 w-4" />
+              {t("common.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </CardHeader>
@@ -123,7 +125,7 @@ export function FarmerDashboard() {
                     <div>
                       <p className="font-medium">{bid.buyer.name}</p>
                       <p className="text-sm text-muted-foreground">
-                        Bid on {bid.listing.cropName}
+                        {t("dashboard.bidOn", { crop: bid.listing.cropName })}
                       </p>
                     </div>
                   </div>
@@ -141,8 +143,8 @@ export function FarmerDashboard() {
           ) : (
             <div className="text-center py-8 text-muted-foreground">
               <Gavel className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p>No bids yet</p>
-              <p className="text-sm">Create a listing to start receiving bids</p>
+              <p>{t("dashboard.noBidsYet")}</p>
+              <p className="text-sm">{t("dashboard.createListingPrompt")}</p>
             </div>
           )}
         </CardContent>
@@ -152,12 +154,12 @@ export function FarmerDashboard() {
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle>My Listings</CardTitle>
-            <CardDescription>Your active crop listings</CardDescription>
+            <CardTitle>{t("nav.myListings")}</CardTitle>
+            <CardDescription>{t("dashboard.myListingsDesc")}</CardDescription>
           </div>
           <Button variant="ghost" asChild>
             <Link href="/dashboard/listings">
-              View All <ArrowRight className="ml-2 h-4 w-4" />
+              {t("common.viewAll")} <ArrowRight className="ml-2 h-4 w-4" />
             </Link>
           </Button>
         </CardHeader>
@@ -188,7 +190,7 @@ export function FarmerDashboard() {
                   </div>
                   <div className="mt-3 flex items-center gap-2 text-xs text-muted-foreground">
                     <Gavel className="h-3 w-3" />
-                    {listing._count.bids} bids
+                    {listing._count.bids} {t("dashboard.bids")}
                   </div>
                 </Link>
               ))}
@@ -196,9 +198,9 @@ export function FarmerDashboard() {
           ) : (
             <div className="text-center py-8 text-muted-foreground">
               <Package className="h-12 w-12 mx-auto mb-3 opacity-50" />
-              <p>No listings yet</p>
+              <p>{t("dashboard.noListingsYet")}</p>
               <Button asChild className="mt-3">
-                <Link href="/dashboard/listings/new">Create Your First Listing</Link>
+                <Link href="/dashboard/listings/new">{t("dashboard.createFirstListing")}</Link>
               </Button>
             </div>
           )}

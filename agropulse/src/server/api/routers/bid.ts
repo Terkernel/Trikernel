@@ -11,7 +11,7 @@ export const bidRouter = createTRPCRouter({
       z.object({
         listingId: z.string(),
         bidAmount: z.number().positive("Bid amount must be positive"),
-        quantity: z.number().positive("Quantity must be positive"),
+        quantity: z.number().positive("Quantity must be positive").optional(),
         message: z.string().optional(),
       })
     )
@@ -43,7 +43,9 @@ export const bidRouter = createTRPCRouter({
         });
       }
 
-      if (input.quantity > listing.quantity) {
+      const bidQuantity = input.quantity || listing.quantity;
+
+      if (bidQuantity > listing.quantity) {
         throw new TRPCError({
           code: "BAD_REQUEST",
           message: "Requested quantity exceeds available quantity",
@@ -65,8 +67,8 @@ export const bidRouter = createTRPCRouter({
           where: { id: existingBid.id },
           data: {
             bidAmount: input.bidAmount,
-            quantity: input.quantity,
-            totalAmount: input.bidAmount * input.quantity,
+            quantity: bidQuantity,
+            totalAmount: input.bidAmount * bidQuantity,
             message: input.message,
           },
           include: {
@@ -85,8 +87,8 @@ export const bidRouter = createTRPCRouter({
           listingId: input.listingId,
           buyerId: ctx.session.user.id,
           bidAmount: input.bidAmount,
-          quantity: input.quantity,
-          totalAmount: input.bidAmount * input.quantity,
+          quantity: bidQuantity,
+          totalAmount: input.bidAmount * bidQuantity,
           message: input.message,
         },
         include: {

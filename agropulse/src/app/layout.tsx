@@ -1,10 +1,12 @@
 import "~/styles/globals.css";
 
 import { type Metadata } from "next";
-import { Geist } from "next/font/google";
+import { cookies } from "next/headers";
+import { Geist, Noto_Sans_Devanagari, Noto_Sans_Telugu, Noto_Sans_Tamil, Noto_Sans_Kannada, Noto_Sans_Malayalam, Noto_Sans_Gujarati, Noto_Sans_Gurmukhi, Noto_Sans_Bengali } from "next/font/google";
 
 import { TRPCReactProvider } from "~/trpc/react";
 import { LanguageProvider } from "~/providers/language-provider";
+import { defaultLocale } from "~/i18n";
 
 export const metadata: Metadata = {
   title: "AgroPulse - Agricultural Marketplace",
@@ -17,11 +19,76 @@ const geist = Geist({
   variable: "--font-geist-sans",
 });
 
-export default function RootLayout({
+const notoSansDevanagari = Noto_Sans_Devanagari({
+  subsets: ["devanagari"],
+  variable: "--font-noto-devanagari",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansTelugu = Noto_Sans_Telugu({
+  subsets: ["telugu"],
+  variable: "--font-noto-telugu",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansTamil = Noto_Sans_Tamil({
+  subsets: ["tamil"],
+  variable: "--font-noto-tamil",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansKannada = Noto_Sans_Kannada({
+  subsets: ["kannada"],
+  variable: "--font-noto-kannada",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansMalayalam = Noto_Sans_Malayalam({
+  subsets: ["malayalam"],
+  variable: "--font-noto-malayalam",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansGujarati = Noto_Sans_Gujarati({
+  subsets: ["gujarati"],
+  variable: "--font-noto-gujarati",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansGurmukhi = Noto_Sans_Gurmukhi({
+  subsets: ["gurmukhi"],
+  variable: "--font-noto-gurmukhi",
+  weight: ["400", "500", "600", "700"],
+});
+
+const notoSansBengali = Noto_Sans_Bengali({
+  subsets: ["bengali"],
+  variable: "--font-noto-bengali",
+  weight: ["400", "500", "600", "700"],
+});
+
+const fontMap = {
+  en: geist.variable,
+  hi: notoSansDevanagari.variable,
+  mr: notoSansDevanagari.variable,
+  te: notoSansTelugu.variable,
+  ta: notoSansTamil.variable,
+  kn: notoSansKannada.variable,
+  ml: notoSansMalayalam.variable,
+  gu: notoSansGujarati.variable,
+  pa: notoSansGurmukhi.variable,
+  bn: notoSansBengali.variable,
+};
+
+export default async function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
+  const cookieStore = await cookies();
+  const locale = cookieStore.get("NEXT_LOCALE")?.value || defaultLocale;
+  const fontClass = fontMap[locale as keyof typeof fontMap] || geist.variable;
+
   return (
-    <html lang="en" className={`${geist.variable}`}>
+    <html lang={locale} className={fontClass}>
       <body>
         <TRPCReactProvider>
           <LanguageProvider>

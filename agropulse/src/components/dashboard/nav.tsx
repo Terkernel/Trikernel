@@ -53,7 +53,7 @@ export function DashboardNav() {
   const pathname = usePathname();
   const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useTranslation();
+  const { t } = useLanguage();
   const { locale, setLocale, locales, localeNames } = useLanguage();
 
   const navItems = session?.user.role === "FARMER" ? farmerNavItems : buyerNavItems;
@@ -70,7 +70,7 @@ export function DashboardNav() {
           <div>
             <h1 className="font-bold text-primary text-lg">AgroPulse</h1>
             <p className="text-xs text-muted-foreground capitalize">
-              {session?.user.role?.toLowerCase()} Portal
+              {t("dashboard.portal", { role: session?.user.role?.toLowerCase() || "user" })}
             </p>
           </div>
         </div>

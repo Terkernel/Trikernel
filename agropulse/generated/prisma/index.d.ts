@@ -68,6 +68,16 @@ export type AIPrediction = $Result.DefaultSelection<Prisma.$AIPredictionPayload>
  * 
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model AuditLog
+ * 
+ */
+export type AuditLog = $Result.DefaultSelection<Prisma.$AuditLogPayload>
+/**
+ * Model BlockchainTransaction
+ * 
+ */
+export type BlockchainTransaction = $Result.DefaultSelection<Prisma.$BlockchainTransactionPayload>
 
 /**
  * Enums
@@ -128,6 +138,38 @@ export const NotificationType: {
 
 export type NotificationType = (typeof NotificationType)[keyof typeof NotificationType]
 
+
+export const AuditAction: {
+  SIGN_IN: 'SIGN_IN',
+  SIGN_OUT: 'SIGN_OUT',
+  AUTH_ATTEMPT: 'AUTH_ATTEMPT',
+  PASSWORD_CHANGE: 'PASSWORD_CHANGE',
+  PROFILE_UPDATE: 'PROFILE_UPDATE',
+  LISTING_CREATE: 'LISTING_CREATE',
+  LISTING_UPDATE: 'LISTING_UPDATE',
+  LISTING_DELETE: 'LISTING_DELETE',
+  BID_CREATE: 'BID_CREATE',
+  BID_UPDATE: 'BID_UPDATE',
+  PAYMENT_INITIATED: 'PAYMENT_INITIATED',
+  PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
+  MESSAGE_SENT: 'MESSAGE_SENT',
+  ADMIN_ACTION: 'ADMIN_ACTION'
+};
+
+export type AuditAction = (typeof AuditAction)[keyof typeof AuditAction]
+
+
+export const TransactionType: {
+  LISTING_CREATED: 'LISTING_CREATED',
+  BID_PLACED: 'BID_PLACED',
+  BID_ACCEPTED: 'BID_ACCEPTED',
+  PAYMENT_COMPLETED: 'PAYMENT_COMPLETED',
+  RATING_GIVEN: 'RATING_GIVEN',
+  CONTRACT_SIGNED: 'CONTRACT_SIGNED'
+};
+
+export type TransactionType = (typeof TransactionType)[keyof typeof TransactionType]
+
 }
 
 export type UserRole = $Enums.UserRole
@@ -149,6 +191,14 @@ export const CropCategory: typeof $Enums.CropCategory
 export type NotificationType = $Enums.NotificationType
 
 export const NotificationType: typeof $Enums.NotificationType
+
+export type AuditAction = $Enums.AuditAction
+
+export const AuditAction: typeof $Enums.AuditAction
+
+export type TransactionType = $Enums.TransactionType
+
+export const TransactionType: typeof $Enums.TransactionType
 
 /**
  * ##  Prisma Client ʲˢ
@@ -377,6 +427,26 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.auditLog`: Exposes CRUD operations for the **AuditLog** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AuditLogs
+    * const auditLogs = await prisma.auditLog.findMany()
+    * ```
+    */
+  get auditLog(): Prisma.AuditLogDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.blockchainTransaction`: Exposes CRUD operations for the **BlockchainTransaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more BlockchainTransactions
+    * const blockchainTransactions = await prisma.blockchainTransaction.findMany()
+    * ```
+    */
+  get blockchainTransaction(): Prisma.BlockchainTransactionDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -828,7 +898,9 @@ export namespace Prisma {
     Rating: 'Rating',
     MandiPrice: 'MandiPrice',
     AIPrediction: 'AIPrediction',
-    Notification: 'Notification'
+    Notification: 'Notification',
+    AuditLog: 'AuditLog',
+    BlockchainTransaction: 'BlockchainTransaction'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -847,7 +919,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "account" | "session" | "verificationToken" | "cropListing" | "bid" | "message" | "rating" | "mandiPrice" | "aIPrediction" | "notification"
+      modelProps: "user" | "account" | "session" | "verificationToken" | "cropListing" | "bid" | "message" | "rating" | "mandiPrice" | "aIPrediction" | "notification" | "auditLog" | "blockchainTransaction"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1665,6 +1737,154 @@ export namespace Prisma {
           }
         }
       }
+      AuditLog: {
+        payload: Prisma.$AuditLogPayload<ExtArgs>
+        fields: Prisma.AuditLogFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AuditLogFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AuditLogFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          findFirst: {
+            args: Prisma.AuditLogFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AuditLogFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          findMany: {
+            args: Prisma.AuditLogFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+          }
+          create: {
+            args: Prisma.AuditLogCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          createMany: {
+            args: Prisma.AuditLogCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.AuditLogCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+          }
+          delete: {
+            args: Prisma.AuditLogDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          update: {
+            args: Prisma.AuditLogUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          deleteMany: {
+            args: Prisma.AuditLogDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AuditLogUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.AuditLogUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>[]
+          }
+          upsert: {
+            args: Prisma.AuditLogUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$AuditLogPayload>
+          }
+          aggregate: {
+            args: Prisma.AuditLogAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateAuditLog>
+          }
+          groupBy: {
+            args: Prisma.AuditLogGroupByArgs<ExtArgs>
+            result: $Utils.Optional<AuditLogGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AuditLogCountArgs<ExtArgs>
+            result: $Utils.Optional<AuditLogCountAggregateOutputType> | number
+          }
+        }
+      }
+      BlockchainTransaction: {
+        payload: Prisma.$BlockchainTransactionPayload<ExtArgs>
+        fields: Prisma.BlockchainTransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.BlockchainTransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.BlockchainTransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.BlockchainTransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.BlockchainTransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          findMany: {
+            args: Prisma.BlockchainTransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>[]
+          }
+          create: {
+            args: Prisma.BlockchainTransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          createMany: {
+            args: Prisma.BlockchainTransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.BlockchainTransactionCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>[]
+          }
+          delete: {
+            args: Prisma.BlockchainTransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          update: {
+            args: Prisma.BlockchainTransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.BlockchainTransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.BlockchainTransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.BlockchainTransactionUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>[]
+          }
+          upsert: {
+            args: Prisma.BlockchainTransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$BlockchainTransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.BlockchainTransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateBlockchainTransaction>
+          }
+          groupBy: {
+            args: Prisma.BlockchainTransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<BlockchainTransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.BlockchainTransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<BlockchainTransactionCountAggregateOutputType> | number
+          }
+        }
+      }
     }
   } & {
     other: {
@@ -1772,6 +1992,8 @@ export namespace Prisma {
     mandiPrice?: MandiPriceOmit
     aIPrediction?: AIPredictionOmit
     notification?: NotificationOmit
+    auditLog?: AuditLogOmit
+    blockchainTransaction?: BlockchainTransactionOmit
   }
 
   /* Types for Logging */
@@ -1861,6 +2083,8 @@ export namespace Prisma {
     ratingsGiven: number
     ratingsReceived: number
     notifications: number
+    auditLogs: number
+    blockchainTransactions: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1873,6 +2097,8 @@ export namespace Prisma {
     ratingsGiven?: boolean | UserCountOutputTypeCountRatingsGivenArgs
     ratingsReceived?: boolean | UserCountOutputTypeCountRatingsReceivedArgs
     notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    auditLogs?: boolean | UserCountOutputTypeCountAuditLogsArgs
+    blockchainTransactions?: boolean | UserCountOutputTypeCountBlockchainTransactionsArgs
   }
 
   // Custom InputTypes
@@ -1949,6 +2175,20 @@ export namespace Prisma {
     where?: NotificationWhereInput
   }
 
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountAuditLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuditLogWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountBlockchainTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlockchainTransactionWhereInput
+  }
+
 
   /**
    * Count Type CropListingCountOutputType
@@ -2003,6 +2243,7 @@ export namespace Prisma {
     trustScore: number | null
     totalRatings: number | null
     avgRating: number | null
+    failedLoginAttempts: number | null
   }
 
   export type UserSumAggregateOutputType = {
@@ -2011,6 +2252,7 @@ export namespace Prisma {
     trustScore: number | null
     totalRatings: number | null
     avgRating: number | null
+    failedLoginAttempts: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -2031,6 +2273,13 @@ export namespace Prisma {
     trustScore: number | null
     totalRatings: number | null
     avgRating: number | null
+    isActive: boolean | null
+    failedLoginAttempts: number | null
+    lockedUntil: Date | null
+    lastLoginAt: Date | null
+    passwordChangedAt: Date | null
+    twoFactorEnabled: boolean | null
+    twoFactorSecret: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2053,6 +2302,13 @@ export namespace Prisma {
     trustScore: number | null
     totalRatings: number | null
     avgRating: number | null
+    isActive: boolean | null
+    failedLoginAttempts: number | null
+    lockedUntil: Date | null
+    lastLoginAt: Date | null
+    passwordChangedAt: Date | null
+    twoFactorEnabled: boolean | null
+    twoFactorSecret: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -2075,6 +2331,13 @@ export namespace Prisma {
     trustScore: number
     totalRatings: number
     avgRating: number
+    isActive: number
+    failedLoginAttempts: number
+    lockedUntil: number
+    lastLoginAt: number
+    passwordChangedAt: number
+    twoFactorEnabled: number
+    twoFactorSecret: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -2087,6 +2350,7 @@ export namespace Prisma {
     trustScore?: true
     totalRatings?: true
     avgRating?: true
+    failedLoginAttempts?: true
   }
 
   export type UserSumAggregateInputType = {
@@ -2095,6 +2359,7 @@ export namespace Prisma {
     trustScore?: true
     totalRatings?: true
     avgRating?: true
+    failedLoginAttempts?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -2115,6 +2380,13 @@ export namespace Prisma {
     trustScore?: true
     totalRatings?: true
     avgRating?: true
+    isActive?: true
+    failedLoginAttempts?: true
+    lockedUntil?: true
+    lastLoginAt?: true
+    passwordChangedAt?: true
+    twoFactorEnabled?: true
+    twoFactorSecret?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2137,6 +2409,13 @@ export namespace Prisma {
     trustScore?: true
     totalRatings?: true
     avgRating?: true
+    isActive?: true
+    failedLoginAttempts?: true
+    lockedUntil?: true
+    lastLoginAt?: true
+    passwordChangedAt?: true
+    twoFactorEnabled?: true
+    twoFactorSecret?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -2159,6 +2438,13 @@ export namespace Prisma {
     trustScore?: true
     totalRatings?: true
     avgRating?: true
+    isActive?: true
+    failedLoginAttempts?: true
+    lockedUntil?: true
+    lastLoginAt?: true
+    passwordChangedAt?: true
+    twoFactorEnabled?: true
+    twoFactorSecret?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -2268,6 +2554,13 @@ export namespace Prisma {
     trustScore: number
     totalRatings: number
     avgRating: number
+    isActive: boolean
+    failedLoginAttempts: number
+    lockedUntil: Date | null
+    lastLoginAt: Date | null
+    passwordChangedAt: Date | null
+    twoFactorEnabled: boolean
+    twoFactorSecret: string | null
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -2309,6 +2602,13 @@ export namespace Prisma {
     trustScore?: boolean
     totalRatings?: boolean
     avgRating?: boolean
+    isActive?: boolean
+    failedLoginAttempts?: boolean
+    lockedUntil?: boolean
+    lastLoginAt?: boolean
+    passwordChangedAt?: boolean
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     accounts?: boolean | User$accountsArgs<ExtArgs>
@@ -2320,6 +2620,8 @@ export namespace Prisma {
     ratingsGiven?: boolean | User$ratingsGivenArgs<ExtArgs>
     ratingsReceived?: boolean | User$ratingsReceivedArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
+    blockchainTransactions?: boolean | User$blockchainTransactionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2341,6 +2643,13 @@ export namespace Prisma {
     trustScore?: boolean
     totalRatings?: boolean
     avgRating?: boolean
+    isActive?: boolean
+    failedLoginAttempts?: boolean
+    lockedUntil?: boolean
+    lastLoginAt?: boolean
+    passwordChangedAt?: boolean
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2363,6 +2672,13 @@ export namespace Prisma {
     trustScore?: boolean
     totalRatings?: boolean
     avgRating?: boolean
+    isActive?: boolean
+    failedLoginAttempts?: boolean
+    lockedUntil?: boolean
+    lastLoginAt?: boolean
+    passwordChangedAt?: boolean
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }, ExtArgs["result"]["user"]>
@@ -2385,11 +2701,18 @@ export namespace Prisma {
     trustScore?: boolean
     totalRatings?: boolean
     avgRating?: boolean
+    isActive?: boolean
+    failedLoginAttempts?: boolean
+    lockedUntil?: boolean
+    lastLoginAt?: boolean
+    passwordChangedAt?: boolean
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "phone" | "role" | "address" | "city" | "state" | "pincode" | "latitude" | "longitude" | "trustScore" | "totalRatings" | "avgRating" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "emailVerified" | "image" | "password" | "phone" | "role" | "address" | "city" | "state" | "pincode" | "latitude" | "longitude" | "trustScore" | "totalRatings" | "avgRating" | "isActive" | "failedLoginAttempts" | "lockedUntil" | "lastLoginAt" | "passwordChangedAt" | "twoFactorEnabled" | "twoFactorSecret" | "createdAt" | "updatedAt", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     accounts?: boolean | User$accountsArgs<ExtArgs>
     sessions?: boolean | User$sessionsArgs<ExtArgs>
@@ -2400,6 +2723,8 @@ export namespace Prisma {
     ratingsGiven?: boolean | User$ratingsGivenArgs<ExtArgs>
     ratingsReceived?: boolean | User$ratingsReceivedArgs<ExtArgs>
     notifications?: boolean | User$notificationsArgs<ExtArgs>
+    auditLogs?: boolean | User$auditLogsArgs<ExtArgs>
+    blockchainTransactions?: boolean | User$blockchainTransactionsArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
@@ -2417,6 +2742,8 @@ export namespace Prisma {
       ratingsGiven: Prisma.$RatingPayload<ExtArgs>[]
       ratingsReceived: Prisma.$RatingPayload<ExtArgs>[]
       notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      auditLogs: Prisma.$AuditLogPayload<ExtArgs>[]
+      blockchainTransactions: Prisma.$BlockchainTransactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
@@ -2436,6 +2763,13 @@ export namespace Prisma {
       trustScore: number
       totalRatings: number
       avgRating: number
+      isActive: boolean
+      failedLoginAttempts: number
+      lockedUntil: Date | null
+      lastLoginAt: Date | null
+      passwordChangedAt: Date | null
+      twoFactorEnabled: boolean
+      twoFactorSecret: string | null
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -2841,6 +3175,8 @@ export namespace Prisma {
     ratingsGiven<T extends User$ratingsGivenArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingsGivenArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     ratingsReceived<T extends User$ratingsReceivedArgs<ExtArgs> = {}>(args?: Subset<T, User$ratingsReceivedArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$RatingPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    auditLogs<T extends User$auditLogsArgs<ExtArgs> = {}>(args?: Subset<T, User$auditLogsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    blockchainTransactions<T extends User$blockchainTransactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$blockchainTransactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -2887,6 +3223,13 @@ export namespace Prisma {
     readonly trustScore: FieldRef<"User", 'Float'>
     readonly totalRatings: FieldRef<"User", 'Int'>
     readonly avgRating: FieldRef<"User", 'Float'>
+    readonly isActive: FieldRef<"User", 'Boolean'>
+    readonly failedLoginAttempts: FieldRef<"User", 'Int'>
+    readonly lockedUntil: FieldRef<"User", 'DateTime'>
+    readonly lastLoginAt: FieldRef<"User", 'DateTime'>
+    readonly passwordChangedAt: FieldRef<"User", 'DateTime'>
+    readonly twoFactorEnabled: FieldRef<"User", 'Boolean'>
+    readonly twoFactorSecret: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -3490,6 +3833,54 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.auditLogs
+   */
+  export type User$auditLogsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    where?: AuditLogWhereInput
+    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
+    cursor?: AuditLogWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * User.blockchainTransactions
+   */
+  export type User$blockchainTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    where?: BlockchainTransactionWhereInput
+    orderBy?: BlockchainTransactionOrderByWithRelationInput | BlockchainTransactionOrderByWithRelationInput[]
+    cursor?: BlockchainTransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: BlockchainTransactionScalarFieldEnum | BlockchainTransactionScalarFieldEnum[]
   }
 
   /**
@@ -14770,6 +15161,2245 @@ export namespace Prisma {
 
 
   /**
+   * Model AuditLog
+   */
+
+  export type AggregateAuditLog = {
+    _count: AuditLogCountAggregateOutputType | null
+    _min: AuditLogMinAggregateOutputType | null
+    _max: AuditLogMaxAggregateOutputType | null
+  }
+
+  export type AuditLogMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    action: $Enums.AuditAction | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type AuditLogMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    action: $Enums.AuditAction | null
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date | null
+  }
+
+  export type AuditLogCountAggregateOutputType = {
+    id: number
+    userId: number
+    action: number
+    details: number
+    ipAddress: number
+    userAgent: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type AuditLogMinAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type AuditLogMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+  }
+
+  export type AuditLogCountAggregateInputType = {
+    id?: true
+    userId?: true
+    action?: true
+    details?: true
+    ipAddress?: true
+    userAgent?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type AuditLogAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AuditLog to aggregate.
+     */
+    where?: AuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditLogs to fetch.
+     */
+    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AuditLogs
+    **/
+    _count?: true | AuditLogCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AuditLogMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AuditLogMaxAggregateInputType
+  }
+
+  export type GetAuditLogAggregateType<T extends AuditLogAggregateArgs> = {
+        [P in keyof T & keyof AggregateAuditLog]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAuditLog[P]>
+      : GetScalarType<T[P], AggregateAuditLog[P]>
+  }
+
+
+
+
+  export type AuditLogGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AuditLogWhereInput
+    orderBy?: AuditLogOrderByWithAggregationInput | AuditLogOrderByWithAggregationInput[]
+    by: AuditLogScalarFieldEnum[] | AuditLogScalarFieldEnum
+    having?: AuditLogScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AuditLogCountAggregateInputType | true
+    _min?: AuditLogMinAggregateInputType
+    _max?: AuditLogMaxAggregateInputType
+  }
+
+  export type AuditLogGroupByOutputType = {
+    id: string
+    userId: string | null
+    action: $Enums.AuditAction
+    details: JsonValue
+    ipAddress: string | null
+    userAgent: string | null
+    createdAt: Date
+    _count: AuditLogCountAggregateOutputType | null
+    _min: AuditLogMinAggregateOutputType | null
+    _max: AuditLogMaxAggregateOutputType | null
+  }
+
+  type GetAuditLogGroupByPayload<T extends AuditLogGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AuditLogGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AuditLogGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AuditLogGroupByOutputType[P]>
+            : GetScalarType<T[P], AuditLogGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AuditLogSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }, ExtArgs["result"]["auditLog"]>
+
+  export type AuditLogSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }, ExtArgs["result"]["auditLog"]>
+
+  export type AuditLogSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }, ExtArgs["result"]["auditLog"]>
+
+  export type AuditLogSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    action?: boolean
+    details?: boolean
+    ipAddress?: boolean
+    userAgent?: boolean
+    createdAt?: boolean
+  }
+
+  export type AuditLogOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "action" | "details" | "ipAddress" | "userAgent" | "createdAt", ExtArgs["result"]["auditLog"]>
+  export type AuditLogInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }
+  export type AuditLogIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }
+  export type AuditLogIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | AuditLog$userArgs<ExtArgs>
+  }
+
+  export type $AuditLogPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AuditLog"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string | null
+      action: $Enums.AuditAction
+      details: Prisma.JsonValue
+      ipAddress: string | null
+      userAgent: string | null
+      createdAt: Date
+    }, ExtArgs["result"]["auditLog"]>
+    composites: {}
+  }
+
+  type AuditLogGetPayload<S extends boolean | null | undefined | AuditLogDefaultArgs> = $Result.GetResult<Prisma.$AuditLogPayload, S>
+
+  type AuditLogCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<AuditLogFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: AuditLogCountAggregateInputType | true
+    }
+
+  export interface AuditLogDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AuditLog'], meta: { name: 'AuditLog' } }
+    /**
+     * Find zero or one AuditLog that matches the filter.
+     * @param {AuditLogFindUniqueArgs} args - Arguments to find a AuditLog
+     * @example
+     * // Get one AuditLog
+     * const auditLog = await prisma.auditLog.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends AuditLogFindUniqueArgs>(args: SelectSubset<T, AuditLogFindUniqueArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one AuditLog that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {AuditLogFindUniqueOrThrowArgs} args - Arguments to find a AuditLog
+     * @example
+     * // Get one AuditLog
+     * const auditLog = await prisma.auditLog.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends AuditLogFindUniqueOrThrowArgs>(args: SelectSubset<T, AuditLogFindUniqueOrThrowArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AuditLog that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogFindFirstArgs} args - Arguments to find a AuditLog
+     * @example
+     * // Get one AuditLog
+     * const auditLog = await prisma.auditLog.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends AuditLogFindFirstArgs>(args?: SelectSubset<T, AuditLogFindFirstArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first AuditLog that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogFindFirstOrThrowArgs} args - Arguments to find a AuditLog
+     * @example
+     * // Get one AuditLog
+     * const auditLog = await prisma.auditLog.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends AuditLogFindFirstOrThrowArgs>(args?: SelectSubset<T, AuditLogFindFirstOrThrowArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more AuditLogs that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AuditLogs
+     * const auditLogs = await prisma.auditLog.findMany()
+     * 
+     * // Get first 10 AuditLogs
+     * const auditLogs = await prisma.auditLog.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const auditLogWithIdOnly = await prisma.auditLog.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends AuditLogFindManyArgs>(args?: SelectSubset<T, AuditLogFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a AuditLog.
+     * @param {AuditLogCreateArgs} args - Arguments to create a AuditLog.
+     * @example
+     * // Create one AuditLog
+     * const AuditLog = await prisma.auditLog.create({
+     *   data: {
+     *     // ... data to create a AuditLog
+     *   }
+     * })
+     * 
+     */
+    create<T extends AuditLogCreateArgs>(args: SelectSubset<T, AuditLogCreateArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many AuditLogs.
+     * @param {AuditLogCreateManyArgs} args - Arguments to create many AuditLogs.
+     * @example
+     * // Create many AuditLogs
+     * const auditLog = await prisma.auditLog.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends AuditLogCreateManyArgs>(args?: SelectSubset<T, AuditLogCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many AuditLogs and returns the data saved in the database.
+     * @param {AuditLogCreateManyAndReturnArgs} args - Arguments to create many AuditLogs.
+     * @example
+     * // Create many AuditLogs
+     * const auditLog = await prisma.auditLog.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many AuditLogs and only return the `id`
+     * const auditLogWithIdOnly = await prisma.auditLog.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends AuditLogCreateManyAndReturnArgs>(args?: SelectSubset<T, AuditLogCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a AuditLog.
+     * @param {AuditLogDeleteArgs} args - Arguments to delete one AuditLog.
+     * @example
+     * // Delete one AuditLog
+     * const AuditLog = await prisma.auditLog.delete({
+     *   where: {
+     *     // ... filter to delete one AuditLog
+     *   }
+     * })
+     * 
+     */
+    delete<T extends AuditLogDeleteArgs>(args: SelectSubset<T, AuditLogDeleteArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one AuditLog.
+     * @param {AuditLogUpdateArgs} args - Arguments to update one AuditLog.
+     * @example
+     * // Update one AuditLog
+     * const auditLog = await prisma.auditLog.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends AuditLogUpdateArgs>(args: SelectSubset<T, AuditLogUpdateArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more AuditLogs.
+     * @param {AuditLogDeleteManyArgs} args - Arguments to filter AuditLogs to delete.
+     * @example
+     * // Delete a few AuditLogs
+     * const { count } = await prisma.auditLog.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends AuditLogDeleteManyArgs>(args?: SelectSubset<T, AuditLogDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AuditLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AuditLogs
+     * const auditLog = await prisma.auditLog.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends AuditLogUpdateManyArgs>(args: SelectSubset<T, AuditLogUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AuditLogs and returns the data updated in the database.
+     * @param {AuditLogUpdateManyAndReturnArgs} args - Arguments to update many AuditLogs.
+     * @example
+     * // Update many AuditLogs
+     * const auditLog = await prisma.auditLog.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more AuditLogs and only return the `id`
+     * const auditLogWithIdOnly = await prisma.auditLog.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends AuditLogUpdateManyAndReturnArgs>(args: SelectSubset<T, AuditLogUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one AuditLog.
+     * @param {AuditLogUpsertArgs} args - Arguments to update or create a AuditLog.
+     * @example
+     * // Update or create a AuditLog
+     * const auditLog = await prisma.auditLog.upsert({
+     *   create: {
+     *     // ... data to create a AuditLog
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AuditLog we want to update
+     *   }
+     * })
+     */
+    upsert<T extends AuditLogUpsertArgs>(args: SelectSubset<T, AuditLogUpsertArgs<ExtArgs>>): Prisma__AuditLogClient<$Result.GetResult<Prisma.$AuditLogPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of AuditLogs.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogCountArgs} args - Arguments to filter AuditLogs to count.
+     * @example
+     * // Count the number of AuditLogs
+     * const count = await prisma.auditLog.count({
+     *   where: {
+     *     // ... the filter for the AuditLogs we want to count
+     *   }
+     * })
+    **/
+    count<T extends AuditLogCountArgs>(
+      args?: Subset<T, AuditLogCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AuditLogCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AuditLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AuditLogAggregateArgs>(args: Subset<T, AuditLogAggregateArgs>): Prisma.PrismaPromise<GetAuditLogAggregateType<T>>
+
+    /**
+     * Group by AuditLog.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AuditLogGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AuditLogGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AuditLogGroupByArgs['orderBy'] }
+        : { orderBy?: AuditLogGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AuditLogGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAuditLogGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AuditLog model
+   */
+  readonly fields: AuditLogFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AuditLog.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AuditLogClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends AuditLog$userArgs<ExtArgs> = {}>(args?: Subset<T, AuditLog$userArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the AuditLog model
+   */
+  interface AuditLogFieldRefs {
+    readonly id: FieldRef<"AuditLog", 'String'>
+    readonly userId: FieldRef<"AuditLog", 'String'>
+    readonly action: FieldRef<"AuditLog", 'AuditAction'>
+    readonly details: FieldRef<"AuditLog", 'Json'>
+    readonly ipAddress: FieldRef<"AuditLog", 'String'>
+    readonly userAgent: FieldRef<"AuditLog", 'String'>
+    readonly createdAt: FieldRef<"AuditLog", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * AuditLog findUnique
+   */
+  export type AuditLogFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditLog to fetch.
+     */
+    where: AuditLogWhereUniqueInput
+  }
+
+  /**
+   * AuditLog findUniqueOrThrow
+   */
+  export type AuditLogFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditLog to fetch.
+     */
+    where: AuditLogWhereUniqueInput
+  }
+
+  /**
+   * AuditLog findFirst
+   */
+  export type AuditLogFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditLog to fetch.
+     */
+    where?: AuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditLogs to fetch.
+     */
+    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AuditLogs.
+     */
+    cursor?: AuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AuditLogs.
+     */
+    distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * AuditLog findFirstOrThrow
+   */
+  export type AuditLogFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditLog to fetch.
+     */
+    where?: AuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditLogs to fetch.
+     */
+    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AuditLogs.
+     */
+    cursor?: AuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditLogs.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AuditLogs.
+     */
+    distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * AuditLog findMany
+   */
+  export type AuditLogFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter, which AuditLogs to fetch.
+     */
+    where?: AuditLogWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AuditLogs to fetch.
+     */
+    orderBy?: AuditLogOrderByWithRelationInput | AuditLogOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AuditLogs.
+     */
+    cursor?: AuditLogWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AuditLogs from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AuditLogs.
+     */
+    skip?: number
+    distinct?: AuditLogScalarFieldEnum | AuditLogScalarFieldEnum[]
+  }
+
+  /**
+   * AuditLog create
+   */
+  export type AuditLogCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * The data needed to create a AuditLog.
+     */
+    data: XOR<AuditLogCreateInput, AuditLogUncheckedCreateInput>
+  }
+
+  /**
+   * AuditLog createMany
+   */
+  export type AuditLogCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AuditLogs.
+     */
+    data: AuditLogCreateManyInput | AuditLogCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * AuditLog createManyAndReturn
+   */
+  export type AuditLogCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * The data used to create many AuditLogs.
+     */
+    data: AuditLogCreateManyInput | AuditLogCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AuditLog update
+   */
+  export type AuditLogUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * The data needed to update a AuditLog.
+     */
+    data: XOR<AuditLogUpdateInput, AuditLogUncheckedUpdateInput>
+    /**
+     * Choose, which AuditLog to update.
+     */
+    where: AuditLogWhereUniqueInput
+  }
+
+  /**
+   * AuditLog updateMany
+   */
+  export type AuditLogUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AuditLogs.
+     */
+    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AuditLogs to update
+     */
+    where?: AuditLogWhereInput
+    /**
+     * Limit how many AuditLogs to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * AuditLog updateManyAndReturn
+   */
+  export type AuditLogUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * The data used to update AuditLogs.
+     */
+    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyInput>
+    /**
+     * Filter which AuditLogs to update
+     */
+    where?: AuditLogWhereInput
+    /**
+     * Limit how many AuditLogs to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * AuditLog upsert
+   */
+  export type AuditLogUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * The filter to search for the AuditLog to update in case it exists.
+     */
+    where: AuditLogWhereUniqueInput
+    /**
+     * In case the AuditLog found by the `where` argument doesn't exist, create a new AuditLog with this data.
+     */
+    create: XOR<AuditLogCreateInput, AuditLogUncheckedCreateInput>
+    /**
+     * In case the AuditLog was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AuditLogUpdateInput, AuditLogUncheckedUpdateInput>
+  }
+
+  /**
+   * AuditLog delete
+   */
+  export type AuditLogDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+    /**
+     * Filter which AuditLog to delete.
+     */
+    where: AuditLogWhereUniqueInput
+  }
+
+  /**
+   * AuditLog deleteMany
+   */
+  export type AuditLogDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AuditLogs to delete
+     */
+    where?: AuditLogWhereInput
+    /**
+     * Limit how many AuditLogs to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * AuditLog.user
+   */
+  export type AuditLog$userArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    where?: UserWhereInput
+  }
+
+  /**
+   * AuditLog without action
+   */
+  export type AuditLogDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AuditLog
+     */
+    select?: AuditLogSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the AuditLog
+     */
+    omit?: AuditLogOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: AuditLogInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model BlockchainTransaction
+   */
+
+  export type AggregateBlockchainTransaction = {
+    _count: BlockchainTransactionCountAggregateOutputType | null
+    _avg: BlockchainTransactionAvgAggregateOutputType | null
+    _sum: BlockchainTransactionSumAggregateOutputType | null
+    _min: BlockchainTransactionMinAggregateOutputType | null
+    _max: BlockchainTransactionMaxAggregateOutputType | null
+  }
+
+  export type BlockchainTransactionAvgAggregateOutputType = {
+    nonce: number | null
+  }
+
+  export type BlockchainTransactionSumAggregateOutputType = {
+    nonce: number | null
+  }
+
+  export type BlockchainTransactionMinAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    transactionType: $Enums.TransactionType | null
+    dataHash: string | null
+    blockHash: string | null
+    previousBlockHash: string | null
+    nonce: number | null
+    createdAt: Date | null
+  }
+
+  export type BlockchainTransactionMaxAggregateOutputType = {
+    id: string | null
+    userId: string | null
+    transactionType: $Enums.TransactionType | null
+    dataHash: string | null
+    blockHash: string | null
+    previousBlockHash: string | null
+    nonce: number | null
+    createdAt: Date | null
+  }
+
+  export type BlockchainTransactionCountAggregateOutputType = {
+    id: number
+    userId: number
+    transactionType: number
+    data: number
+    dataHash: number
+    blockHash: number
+    previousBlockHash: number
+    nonce: number
+    createdAt: number
+    _all: number
+  }
+
+
+  export type BlockchainTransactionAvgAggregateInputType = {
+    nonce?: true
+  }
+
+  export type BlockchainTransactionSumAggregateInputType = {
+    nonce?: true
+  }
+
+  export type BlockchainTransactionMinAggregateInputType = {
+    id?: true
+    userId?: true
+    transactionType?: true
+    dataHash?: true
+    blockHash?: true
+    previousBlockHash?: true
+    nonce?: true
+    createdAt?: true
+  }
+
+  export type BlockchainTransactionMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    transactionType?: true
+    dataHash?: true
+    blockHash?: true
+    previousBlockHash?: true
+    nonce?: true
+    createdAt?: true
+  }
+
+  export type BlockchainTransactionCountAggregateInputType = {
+    id?: true
+    userId?: true
+    transactionType?: true
+    data?: true
+    dataHash?: true
+    blockHash?: true
+    previousBlockHash?: true
+    nonce?: true
+    createdAt?: true
+    _all?: true
+  }
+
+  export type BlockchainTransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlockchainTransaction to aggregate.
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlockchainTransactions to fetch.
+     */
+    orderBy?: BlockchainTransactionOrderByWithRelationInput | BlockchainTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: BlockchainTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlockchainTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlockchainTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned BlockchainTransactions
+    **/
+    _count?: true | BlockchainTransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: BlockchainTransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: BlockchainTransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: BlockchainTransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: BlockchainTransactionMaxAggregateInputType
+  }
+
+  export type GetBlockchainTransactionAggregateType<T extends BlockchainTransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateBlockchainTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateBlockchainTransaction[P]>
+      : GetScalarType<T[P], AggregateBlockchainTransaction[P]>
+  }
+
+
+
+
+  export type BlockchainTransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: BlockchainTransactionWhereInput
+    orderBy?: BlockchainTransactionOrderByWithAggregationInput | BlockchainTransactionOrderByWithAggregationInput[]
+    by: BlockchainTransactionScalarFieldEnum[] | BlockchainTransactionScalarFieldEnum
+    having?: BlockchainTransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: BlockchainTransactionCountAggregateInputType | true
+    _avg?: BlockchainTransactionAvgAggregateInputType
+    _sum?: BlockchainTransactionSumAggregateInputType
+    _min?: BlockchainTransactionMinAggregateInputType
+    _max?: BlockchainTransactionMaxAggregateInputType
+  }
+
+  export type BlockchainTransactionGroupByOutputType = {
+    id: string
+    userId: string
+    transactionType: $Enums.TransactionType
+    data: JsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash: string | null
+    nonce: number
+    createdAt: Date
+    _count: BlockchainTransactionCountAggregateOutputType | null
+    _avg: BlockchainTransactionAvgAggregateOutputType | null
+    _sum: BlockchainTransactionSumAggregateOutputType | null
+    _min: BlockchainTransactionMinAggregateOutputType | null
+    _max: BlockchainTransactionMaxAggregateOutputType | null
+  }
+
+  type GetBlockchainTransactionGroupByPayload<T extends BlockchainTransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<BlockchainTransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof BlockchainTransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], BlockchainTransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], BlockchainTransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type BlockchainTransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    transactionType?: boolean
+    data?: boolean
+    dataHash?: boolean
+    blockHash?: boolean
+    previousBlockHash?: boolean
+    nonce?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blockchainTransaction"]>
+
+  export type BlockchainTransactionSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    transactionType?: boolean
+    data?: boolean
+    dataHash?: boolean
+    blockHash?: boolean
+    previousBlockHash?: boolean
+    nonce?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blockchainTransaction"]>
+
+  export type BlockchainTransactionSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    transactionType?: boolean
+    data?: boolean
+    dataHash?: boolean
+    blockHash?: boolean
+    previousBlockHash?: boolean
+    nonce?: boolean
+    createdAt?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["blockchainTransaction"]>
+
+  export type BlockchainTransactionSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    transactionType?: boolean
+    data?: boolean
+    dataHash?: boolean
+    blockHash?: boolean
+    previousBlockHash?: boolean
+    nonce?: boolean
+    createdAt?: boolean
+  }
+
+  export type BlockchainTransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "transactionType" | "data" | "dataHash" | "blockHash" | "previousBlockHash" | "nonce" | "createdAt", ExtArgs["result"]["blockchainTransaction"]>
+  export type BlockchainTransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BlockchainTransactionIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type BlockchainTransactionIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $BlockchainTransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "BlockchainTransaction"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      userId: string
+      transactionType: $Enums.TransactionType
+      data: Prisma.JsonValue
+      dataHash: string
+      blockHash: string
+      previousBlockHash: string | null
+      nonce: number
+      createdAt: Date
+    }, ExtArgs["result"]["blockchainTransaction"]>
+    composites: {}
+  }
+
+  type BlockchainTransactionGetPayload<S extends boolean | null | undefined | BlockchainTransactionDefaultArgs> = $Result.GetResult<Prisma.$BlockchainTransactionPayload, S>
+
+  type BlockchainTransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<BlockchainTransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: BlockchainTransactionCountAggregateInputType | true
+    }
+
+  export interface BlockchainTransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['BlockchainTransaction'], meta: { name: 'BlockchainTransaction' } }
+    /**
+     * Find zero or one BlockchainTransaction that matches the filter.
+     * @param {BlockchainTransactionFindUniqueArgs} args - Arguments to find a BlockchainTransaction
+     * @example
+     * // Get one BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends BlockchainTransactionFindUniqueArgs>(args: SelectSubset<T, BlockchainTransactionFindUniqueArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one BlockchainTransaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {BlockchainTransactionFindUniqueOrThrowArgs} args - Arguments to find a BlockchainTransaction
+     * @example
+     * // Get one BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends BlockchainTransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, BlockchainTransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlockchainTransaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionFindFirstArgs} args - Arguments to find a BlockchainTransaction
+     * @example
+     * // Get one BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends BlockchainTransactionFindFirstArgs>(args?: SelectSubset<T, BlockchainTransactionFindFirstArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first BlockchainTransaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionFindFirstOrThrowArgs} args - Arguments to find a BlockchainTransaction
+     * @example
+     * // Get one BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends BlockchainTransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, BlockchainTransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more BlockchainTransactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all BlockchainTransactions
+     * const blockchainTransactions = await prisma.blockchainTransaction.findMany()
+     * 
+     * // Get first 10 BlockchainTransactions
+     * const blockchainTransactions = await prisma.blockchainTransaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const blockchainTransactionWithIdOnly = await prisma.blockchainTransaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends BlockchainTransactionFindManyArgs>(args?: SelectSubset<T, BlockchainTransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a BlockchainTransaction.
+     * @param {BlockchainTransactionCreateArgs} args - Arguments to create a BlockchainTransaction.
+     * @example
+     * // Create one BlockchainTransaction
+     * const BlockchainTransaction = await prisma.blockchainTransaction.create({
+     *   data: {
+     *     // ... data to create a BlockchainTransaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends BlockchainTransactionCreateArgs>(args: SelectSubset<T, BlockchainTransactionCreateArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many BlockchainTransactions.
+     * @param {BlockchainTransactionCreateManyArgs} args - Arguments to create many BlockchainTransactions.
+     * @example
+     * // Create many BlockchainTransactions
+     * const blockchainTransaction = await prisma.blockchainTransaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends BlockchainTransactionCreateManyArgs>(args?: SelectSubset<T, BlockchainTransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many BlockchainTransactions and returns the data saved in the database.
+     * @param {BlockchainTransactionCreateManyAndReturnArgs} args - Arguments to create many BlockchainTransactions.
+     * @example
+     * // Create many BlockchainTransactions
+     * const blockchainTransaction = await prisma.blockchainTransaction.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many BlockchainTransactions and only return the `id`
+     * const blockchainTransactionWithIdOnly = await prisma.blockchainTransaction.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends BlockchainTransactionCreateManyAndReturnArgs>(args?: SelectSubset<T, BlockchainTransactionCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a BlockchainTransaction.
+     * @param {BlockchainTransactionDeleteArgs} args - Arguments to delete one BlockchainTransaction.
+     * @example
+     * // Delete one BlockchainTransaction
+     * const BlockchainTransaction = await prisma.blockchainTransaction.delete({
+     *   where: {
+     *     // ... filter to delete one BlockchainTransaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends BlockchainTransactionDeleteArgs>(args: SelectSubset<T, BlockchainTransactionDeleteArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one BlockchainTransaction.
+     * @param {BlockchainTransactionUpdateArgs} args - Arguments to update one BlockchainTransaction.
+     * @example
+     * // Update one BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends BlockchainTransactionUpdateArgs>(args: SelectSubset<T, BlockchainTransactionUpdateArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more BlockchainTransactions.
+     * @param {BlockchainTransactionDeleteManyArgs} args - Arguments to filter BlockchainTransactions to delete.
+     * @example
+     * // Delete a few BlockchainTransactions
+     * const { count } = await prisma.blockchainTransaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends BlockchainTransactionDeleteManyArgs>(args?: SelectSubset<T, BlockchainTransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlockchainTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many BlockchainTransactions
+     * const blockchainTransaction = await prisma.blockchainTransaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends BlockchainTransactionUpdateManyArgs>(args: SelectSubset<T, BlockchainTransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more BlockchainTransactions and returns the data updated in the database.
+     * @param {BlockchainTransactionUpdateManyAndReturnArgs} args - Arguments to update many BlockchainTransactions.
+     * @example
+     * // Update many BlockchainTransactions
+     * const blockchainTransaction = await prisma.blockchainTransaction.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more BlockchainTransactions and only return the `id`
+     * const blockchainTransactionWithIdOnly = await prisma.blockchainTransaction.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends BlockchainTransactionUpdateManyAndReturnArgs>(args: SelectSubset<T, BlockchainTransactionUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one BlockchainTransaction.
+     * @param {BlockchainTransactionUpsertArgs} args - Arguments to update or create a BlockchainTransaction.
+     * @example
+     * // Update or create a BlockchainTransaction
+     * const blockchainTransaction = await prisma.blockchainTransaction.upsert({
+     *   create: {
+     *     // ... data to create a BlockchainTransaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the BlockchainTransaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends BlockchainTransactionUpsertArgs>(args: SelectSubset<T, BlockchainTransactionUpsertArgs<ExtArgs>>): Prisma__BlockchainTransactionClient<$Result.GetResult<Prisma.$BlockchainTransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of BlockchainTransactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionCountArgs} args - Arguments to filter BlockchainTransactions to count.
+     * @example
+     * // Count the number of BlockchainTransactions
+     * const count = await prisma.blockchainTransaction.count({
+     *   where: {
+     *     // ... the filter for the BlockchainTransactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends BlockchainTransactionCountArgs>(
+      args?: Subset<T, BlockchainTransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], BlockchainTransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a BlockchainTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends BlockchainTransactionAggregateArgs>(args: Subset<T, BlockchainTransactionAggregateArgs>): Prisma.PrismaPromise<GetBlockchainTransactionAggregateType<T>>
+
+    /**
+     * Group by BlockchainTransaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {BlockchainTransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends BlockchainTransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: BlockchainTransactionGroupByArgs['orderBy'] }
+        : { orderBy?: BlockchainTransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, BlockchainTransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetBlockchainTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the BlockchainTransaction model
+   */
+  readonly fields: BlockchainTransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for BlockchainTransaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__BlockchainTransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the BlockchainTransaction model
+   */
+  interface BlockchainTransactionFieldRefs {
+    readonly id: FieldRef<"BlockchainTransaction", 'String'>
+    readonly userId: FieldRef<"BlockchainTransaction", 'String'>
+    readonly transactionType: FieldRef<"BlockchainTransaction", 'TransactionType'>
+    readonly data: FieldRef<"BlockchainTransaction", 'Json'>
+    readonly dataHash: FieldRef<"BlockchainTransaction", 'String'>
+    readonly blockHash: FieldRef<"BlockchainTransaction", 'String'>
+    readonly previousBlockHash: FieldRef<"BlockchainTransaction", 'String'>
+    readonly nonce: FieldRef<"BlockchainTransaction", 'Int'>
+    readonly createdAt: FieldRef<"BlockchainTransaction", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * BlockchainTransaction findUnique
+   */
+  export type BlockchainTransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BlockchainTransaction to fetch.
+     */
+    where: BlockchainTransactionWhereUniqueInput
+  }
+
+  /**
+   * BlockchainTransaction findUniqueOrThrow
+   */
+  export type BlockchainTransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BlockchainTransaction to fetch.
+     */
+    where: BlockchainTransactionWhereUniqueInput
+  }
+
+  /**
+   * BlockchainTransaction findFirst
+   */
+  export type BlockchainTransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BlockchainTransaction to fetch.
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlockchainTransactions to fetch.
+     */
+    orderBy?: BlockchainTransactionOrderByWithRelationInput | BlockchainTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlockchainTransactions.
+     */
+    cursor?: BlockchainTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlockchainTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlockchainTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlockchainTransactions.
+     */
+    distinct?: BlockchainTransactionScalarFieldEnum | BlockchainTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BlockchainTransaction findFirstOrThrow
+   */
+  export type BlockchainTransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BlockchainTransaction to fetch.
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlockchainTransactions to fetch.
+     */
+    orderBy?: BlockchainTransactionOrderByWithRelationInput | BlockchainTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for BlockchainTransactions.
+     */
+    cursor?: BlockchainTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlockchainTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlockchainTransactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of BlockchainTransactions.
+     */
+    distinct?: BlockchainTransactionScalarFieldEnum | BlockchainTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BlockchainTransaction findMany
+   */
+  export type BlockchainTransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which BlockchainTransactions to fetch.
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of BlockchainTransactions to fetch.
+     */
+    orderBy?: BlockchainTransactionOrderByWithRelationInput | BlockchainTransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing BlockchainTransactions.
+     */
+    cursor?: BlockchainTransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` BlockchainTransactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` BlockchainTransactions.
+     */
+    skip?: number
+    distinct?: BlockchainTransactionScalarFieldEnum | BlockchainTransactionScalarFieldEnum[]
+  }
+
+  /**
+   * BlockchainTransaction create
+   */
+  export type BlockchainTransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a BlockchainTransaction.
+     */
+    data: XOR<BlockchainTransactionCreateInput, BlockchainTransactionUncheckedCreateInput>
+  }
+
+  /**
+   * BlockchainTransaction createMany
+   */
+  export type BlockchainTransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many BlockchainTransactions.
+     */
+    data: BlockchainTransactionCreateManyInput | BlockchainTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * BlockchainTransaction createManyAndReturn
+   */
+  export type BlockchainTransactionCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to create many BlockchainTransactions.
+     */
+    data: BlockchainTransactionCreateManyInput | BlockchainTransactionCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BlockchainTransaction update
+   */
+  export type BlockchainTransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a BlockchainTransaction.
+     */
+    data: XOR<BlockchainTransactionUpdateInput, BlockchainTransactionUncheckedUpdateInput>
+    /**
+     * Choose, which BlockchainTransaction to update.
+     */
+    where: BlockchainTransactionWhereUniqueInput
+  }
+
+  /**
+   * BlockchainTransaction updateMany
+   */
+  export type BlockchainTransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update BlockchainTransactions.
+     */
+    data: XOR<BlockchainTransactionUpdateManyMutationInput, BlockchainTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which BlockchainTransactions to update
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * Limit how many BlockchainTransactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlockchainTransaction updateManyAndReturn
+   */
+  export type BlockchainTransactionUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * The data used to update BlockchainTransactions.
+     */
+    data: XOR<BlockchainTransactionUpdateManyMutationInput, BlockchainTransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which BlockchainTransactions to update
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * Limit how many BlockchainTransactions to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * BlockchainTransaction upsert
+   */
+  export type BlockchainTransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the BlockchainTransaction to update in case it exists.
+     */
+    where: BlockchainTransactionWhereUniqueInput
+    /**
+     * In case the BlockchainTransaction found by the `where` argument doesn't exist, create a new BlockchainTransaction with this data.
+     */
+    create: XOR<BlockchainTransactionCreateInput, BlockchainTransactionUncheckedCreateInput>
+    /**
+     * In case the BlockchainTransaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<BlockchainTransactionUpdateInput, BlockchainTransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * BlockchainTransaction delete
+   */
+  export type BlockchainTransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+    /**
+     * Filter which BlockchainTransaction to delete.
+     */
+    where: BlockchainTransactionWhereUniqueInput
+  }
+
+  /**
+   * BlockchainTransaction deleteMany
+   */
+  export type BlockchainTransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which BlockchainTransactions to delete
+     */
+    where?: BlockchainTransactionWhereInput
+    /**
+     * Limit how many BlockchainTransactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * BlockchainTransaction without action
+   */
+  export type BlockchainTransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the BlockchainTransaction
+     */
+    select?: BlockchainTransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the BlockchainTransaction
+     */
+    omit?: BlockchainTransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: BlockchainTransactionInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Enums
    */
 
@@ -14801,6 +17431,13 @@ export namespace Prisma {
     trustScore: 'trustScore',
     totalRatings: 'totalRatings',
     avgRating: 'avgRating',
+    isActive: 'isActive',
+    failedLoginAttempts: 'failedLoginAttempts',
+    lockedUntil: 'lockedUntil',
+    lastLoginAt: 'lastLoginAt',
+    passwordChangedAt: 'passwordChangedAt',
+    twoFactorEnabled: 'twoFactorEnabled',
+    twoFactorSecret: 'twoFactorSecret',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -14963,6 +17600,34 @@ export namespace Prisma {
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+  export const AuditLogScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    action: 'action',
+    details: 'details',
+    ipAddress: 'ipAddress',
+    userAgent: 'userAgent',
+    createdAt: 'createdAt'
+  };
+
+  export type AuditLogScalarFieldEnum = (typeof AuditLogScalarFieldEnum)[keyof typeof AuditLogScalarFieldEnum]
+
+
+  export const BlockchainTransactionScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    transactionType: 'transactionType',
+    data: 'data',
+    dataHash: 'dataHash',
+    blockHash: 'blockHash',
+    previousBlockHash: 'previousBlockHash',
+    nonce: 'nonce',
+    createdAt: 'createdAt'
+  };
+
+  export type BlockchainTransactionScalarFieldEnum = (typeof BlockchainTransactionScalarFieldEnum)[keyof typeof BlockchainTransactionScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -14977,6 +17642,13 @@ export namespace Prisma {
   };
 
   export type NullableJsonNullValueInput = (typeof NullableJsonNullValueInput)[keyof typeof NullableJsonNullValueInput]
+
+
+  export const JsonNullValueInput: {
+    JsonNull: typeof JsonNull
+  };
+
+  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
 
 
   export const QueryMode: {
@@ -15080,6 +17752,13 @@ export namespace Prisma {
 
 
   /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
    * Reference to a field of type 'CropCategory'
    */
   export type EnumCropCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CropCategory'>
@@ -15090,13 +17769,6 @@ export namespace Prisma {
    * Reference to a field of type 'CropCategory[]'
    */
   export type ListEnumCropCategoryFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'CropCategory[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'Boolean'
-   */
-  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
     
 
 
@@ -15154,6 +17826,34 @@ export namespace Prisma {
    */
   export type ListEnumNotificationTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'NotificationType[]'>
     
+
+
+  /**
+   * Reference to a field of type 'AuditAction'
+   */
+  export type EnumAuditActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditAction'>
+    
+
+
+  /**
+   * Reference to a field of type 'AuditAction[]'
+   */
+  export type ListEnumAuditActionFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuditAction[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionType'
+   */
+  export type EnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType'>
+    
+
+
+  /**
+   * Reference to a field of type 'TransactionType[]'
+   */
+  export type ListEnumTransactionTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TransactionType[]'>
+    
   /**
    * Deep Input Types
    */
@@ -15180,6 +17880,13 @@ export namespace Prisma {
     trustScore?: FloatFilter<"User"> | number
     totalRatings?: IntFilter<"User"> | number
     avgRating?: FloatFilter<"User"> | number
+    isActive?: BoolFilter<"User"> | boolean
+    failedLoginAttempts?: IntFilter<"User"> | number
+    lockedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastLoginAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    passwordChangedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    twoFactorEnabled?: BoolFilter<"User"> | boolean
+    twoFactorSecret?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -15191,6 +17898,8 @@ export namespace Prisma {
     ratingsGiven?: RatingListRelationFilter
     ratingsReceived?: RatingListRelationFilter
     notifications?: NotificationListRelationFilter
+    auditLogs?: AuditLogListRelationFilter
+    blockchainTransactions?: BlockchainTransactionListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -15211,6 +17920,13 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    isActive?: SortOrder
+    failedLoginAttempts?: SortOrder
+    lockedUntil?: SortOrderInput | SortOrder
+    lastLoginAt?: SortOrderInput | SortOrder
+    passwordChangedAt?: SortOrderInput | SortOrder
+    twoFactorEnabled?: SortOrder
+    twoFactorSecret?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     accounts?: AccountOrderByRelationAggregateInput
@@ -15222,6 +17938,8 @@ export namespace Prisma {
     ratingsGiven?: RatingOrderByRelationAggregateInput
     ratingsReceived?: RatingOrderByRelationAggregateInput
     notifications?: NotificationOrderByRelationAggregateInput
+    auditLogs?: AuditLogOrderByRelationAggregateInput
+    blockchainTransactions?: BlockchainTransactionOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -15245,6 +17963,13 @@ export namespace Prisma {
     trustScore?: FloatFilter<"User"> | number
     totalRatings?: IntFilter<"User"> | number
     avgRating?: FloatFilter<"User"> | number
+    isActive?: BoolFilter<"User"> | boolean
+    failedLoginAttempts?: IntFilter<"User"> | number
+    lockedUntil?: DateTimeNullableFilter<"User"> | Date | string | null
+    lastLoginAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    passwordChangedAt?: DateTimeNullableFilter<"User"> | Date | string | null
+    twoFactorEnabled?: BoolFilter<"User"> | boolean
+    twoFactorSecret?: StringNullableFilter<"User"> | string | null
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     accounts?: AccountListRelationFilter
@@ -15256,6 +17981,8 @@ export namespace Prisma {
     ratingsGiven?: RatingListRelationFilter
     ratingsReceived?: RatingListRelationFilter
     notifications?: NotificationListRelationFilter
+    auditLogs?: AuditLogListRelationFilter
+    blockchainTransactions?: BlockchainTransactionListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -15276,6 +18003,13 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    isActive?: SortOrder
+    failedLoginAttempts?: SortOrder
+    lockedUntil?: SortOrderInput | SortOrder
+    lastLoginAt?: SortOrderInput | SortOrder
+    passwordChangedAt?: SortOrderInput | SortOrder
+    twoFactorEnabled?: SortOrder
+    twoFactorSecret?: SortOrderInput | SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -15306,6 +18040,13 @@ export namespace Prisma {
     trustScore?: FloatWithAggregatesFilter<"User"> | number
     totalRatings?: IntWithAggregatesFilter<"User"> | number
     avgRating?: FloatWithAggregatesFilter<"User"> | number
+    isActive?: BoolWithAggregatesFilter<"User"> | boolean
+    failedLoginAttempts?: IntWithAggregatesFilter<"User"> | number
+    lockedUntil?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    lastLoginAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    passwordChangedAt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
+    twoFactorEnabled?: BoolWithAggregatesFilter<"User"> | boolean
+    twoFactorSecret?: StringNullableWithAggregatesFilter<"User"> | string | null
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -16103,6 +18844,148 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
   }
 
+  export type AuditLogWhereInput = {
+    AND?: AuditLogWhereInput | AuditLogWhereInput[]
+    OR?: AuditLogWhereInput[]
+    NOT?: AuditLogWhereInput | AuditLogWhereInput[]
+    id?: StringFilter<"AuditLog"> | string
+    userId?: StringNullableFilter<"AuditLog"> | string | null
+    action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
+    details?: JsonFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }
+
+  export type AuditLogOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type AuditLogWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: AuditLogWhereInput | AuditLogWhereInput[]
+    OR?: AuditLogWhereInput[]
+    NOT?: AuditLogWhereInput | AuditLogWhereInput[]
+    userId?: StringNullableFilter<"AuditLog"> | string | null
+    action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
+    details?: JsonFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
+    user?: XOR<UserNullableScalarRelationFilter, UserWhereInput> | null
+  }, "id">
+
+  export type AuditLogOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrderInput | SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    ipAddress?: SortOrderInput | SortOrder
+    userAgent?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    _count?: AuditLogCountOrderByAggregateInput
+    _max?: AuditLogMaxOrderByAggregateInput
+    _min?: AuditLogMinOrderByAggregateInput
+  }
+
+  export type AuditLogScalarWhereWithAggregatesInput = {
+    AND?: AuditLogScalarWhereWithAggregatesInput | AuditLogScalarWhereWithAggregatesInput[]
+    OR?: AuditLogScalarWhereWithAggregatesInput[]
+    NOT?: AuditLogScalarWhereWithAggregatesInput | AuditLogScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"AuditLog"> | string
+    userId?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    action?: EnumAuditActionWithAggregatesFilter<"AuditLog"> | $Enums.AuditAction
+    details?: JsonWithAggregatesFilter<"AuditLog">
+    ipAddress?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableWithAggregatesFilter<"AuditLog"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"AuditLog"> | Date | string
+  }
+
+  export type BlockchainTransactionWhereInput = {
+    AND?: BlockchainTransactionWhereInput | BlockchainTransactionWhereInput[]
+    OR?: BlockchainTransactionWhereInput[]
+    NOT?: BlockchainTransactionWhereInput | BlockchainTransactionWhereInput[]
+    id?: StringFilter<"BlockchainTransaction"> | string
+    userId?: StringFilter<"BlockchainTransaction"> | string
+    transactionType?: EnumTransactionTypeFilter<"BlockchainTransaction"> | $Enums.TransactionType
+    data?: JsonFilter<"BlockchainTransaction">
+    dataHash?: StringFilter<"BlockchainTransaction"> | string
+    blockHash?: StringFilter<"BlockchainTransaction"> | string
+    previousBlockHash?: StringNullableFilter<"BlockchainTransaction"> | string | null
+    nonce?: IntFilter<"BlockchainTransaction"> | number
+    createdAt?: DateTimeFilter<"BlockchainTransaction"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type BlockchainTransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    transactionType?: SortOrder
+    data?: SortOrder
+    dataHash?: SortOrder
+    blockHash?: SortOrder
+    previousBlockHash?: SortOrderInput | SortOrder
+    nonce?: SortOrder
+    createdAt?: SortOrder
+    user?: UserOrderByWithRelationInput
+  }
+
+  export type BlockchainTransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    blockHash?: string
+    AND?: BlockchainTransactionWhereInput | BlockchainTransactionWhereInput[]
+    OR?: BlockchainTransactionWhereInput[]
+    NOT?: BlockchainTransactionWhereInput | BlockchainTransactionWhereInput[]
+    userId?: StringFilter<"BlockchainTransaction"> | string
+    transactionType?: EnumTransactionTypeFilter<"BlockchainTransaction"> | $Enums.TransactionType
+    data?: JsonFilter<"BlockchainTransaction">
+    dataHash?: StringFilter<"BlockchainTransaction"> | string
+    previousBlockHash?: StringNullableFilter<"BlockchainTransaction"> | string | null
+    nonce?: IntFilter<"BlockchainTransaction"> | number
+    createdAt?: DateTimeFilter<"BlockchainTransaction"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id" | "blockHash">
+
+  export type BlockchainTransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    transactionType?: SortOrder
+    data?: SortOrder
+    dataHash?: SortOrder
+    blockHash?: SortOrder
+    previousBlockHash?: SortOrderInput | SortOrder
+    nonce?: SortOrder
+    createdAt?: SortOrder
+    _count?: BlockchainTransactionCountOrderByAggregateInput
+    _avg?: BlockchainTransactionAvgOrderByAggregateInput
+    _max?: BlockchainTransactionMaxOrderByAggregateInput
+    _min?: BlockchainTransactionMinOrderByAggregateInput
+    _sum?: BlockchainTransactionSumOrderByAggregateInput
+  }
+
+  export type BlockchainTransactionScalarWhereWithAggregatesInput = {
+    AND?: BlockchainTransactionScalarWhereWithAggregatesInput | BlockchainTransactionScalarWhereWithAggregatesInput[]
+    OR?: BlockchainTransactionScalarWhereWithAggregatesInput[]
+    NOT?: BlockchainTransactionScalarWhereWithAggregatesInput | BlockchainTransactionScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"BlockchainTransaction"> | string
+    userId?: StringWithAggregatesFilter<"BlockchainTransaction"> | string
+    transactionType?: EnumTransactionTypeWithAggregatesFilter<"BlockchainTransaction"> | $Enums.TransactionType
+    data?: JsonWithAggregatesFilter<"BlockchainTransaction">
+    dataHash?: StringWithAggregatesFilter<"BlockchainTransaction"> | string
+    blockHash?: StringWithAggregatesFilter<"BlockchainTransaction"> | string
+    previousBlockHash?: StringNullableWithAggregatesFilter<"BlockchainTransaction"> | string | null
+    nonce?: IntWithAggregatesFilter<"BlockchainTransaction"> | number
+    createdAt?: DateTimeWithAggregatesFilter<"BlockchainTransaction"> | Date | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name?: string | null
@@ -16121,6 +19004,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -16132,6 +19022,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -16152,6 +19044,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -16163,6 +19062,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -16183,6 +19084,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -16194,6 +19102,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -16214,6 +19124,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -16225,6 +19142,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -16245,6 +19164,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -16267,6 +19193,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -16289,6 +19222,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -17162,6 +20102,158 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type AuditLogCreateInput = {
+    id?: string
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+    user?: UserCreateNestedOneWithoutAuditLogsInput
+  }
+
+  export type AuditLogUncheckedCreateInput = {
+    id?: string
+    userId?: string | null
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AuditLogUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneWithoutAuditLogsNestedInput
+  }
+
+  export type AuditLogUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditLogCreateManyInput = {
+    id?: string
+    userId?: string | null
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AuditLogUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditLogUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: NullableStringFieldUpdateOperationsInput | string | null
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionCreateInput = {
+    id?: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutBlockchainTransactionsInput
+  }
+
+  export type BlockchainTransactionUncheckedCreateInput = {
+    id?: string
+    userId: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
+    createdAt?: Date | string
+  }
+
+  export type BlockchainTransactionUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutBlockchainTransactionsNestedInput
+  }
+
+  export type BlockchainTransactionUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionCreateManyInput = {
+    id?: string
+    userId: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
+    createdAt?: Date | string
+  }
+
+  export type BlockchainTransactionUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    userId?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -17243,6 +20335,11 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -17296,6 +20393,18 @@ export namespace Prisma {
     none?: NotificationWhereInput
   }
 
+  export type AuditLogListRelationFilter = {
+    every?: AuditLogWhereInput
+    some?: AuditLogWhereInput
+    none?: AuditLogWhereInput
+  }
+
+  export type BlockchainTransactionListRelationFilter = {
+    every?: BlockchainTransactionWhereInput
+    some?: BlockchainTransactionWhereInput
+    none?: BlockchainTransactionWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -17329,6 +20438,14 @@ export namespace Prisma {
     _count?: SortOrder
   }
 
+  export type AuditLogOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type BlockchainTransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
   export type UserCountOrderByAggregateInput = {
     id?: SortOrder
     name?: SortOrder
@@ -17347,6 +20464,13 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    isActive?: SortOrder
+    failedLoginAttempts?: SortOrder
+    lockedUntil?: SortOrder
+    lastLoginAt?: SortOrder
+    passwordChangedAt?: SortOrder
+    twoFactorEnabled?: SortOrder
+    twoFactorSecret?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17357,6 +20481,7 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    failedLoginAttempts?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -17377,6 +20502,13 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    isActive?: SortOrder
+    failedLoginAttempts?: SortOrder
+    lockedUntil?: SortOrder
+    lastLoginAt?: SortOrder
+    passwordChangedAt?: SortOrder
+    twoFactorEnabled?: SortOrder
+    twoFactorSecret?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17399,6 +20531,13 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    isActive?: SortOrder
+    failedLoginAttempts?: SortOrder
+    lockedUntil?: SortOrder
+    lastLoginAt?: SortOrder
+    passwordChangedAt?: SortOrder
+    twoFactorEnabled?: SortOrder
+    twoFactorSecret?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -17409,6 +20548,7 @@ export namespace Prisma {
     trustScore?: SortOrder
     totalRatings?: SortOrder
     avgRating?: SortOrder
+    failedLoginAttempts?: SortOrder
   }
 
   export type StringWithAggregatesFilter<$PrismaModel = never> = {
@@ -17517,6 +20657,14 @@ export namespace Prisma {
     _sum?: NestedIntFilter<$PrismaModel>
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -17679,11 +20827,6 @@ export namespace Prisma {
     not?: NestedEnumCropCategoryFilter<$PrismaModel> | $Enums.CropCategory
   }
 
-  export type BoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type StringNullableListFilter<$PrismaModel = never> = {
     equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
     has?: string | StringFieldRefInput<$PrismaModel> | null
@@ -17794,14 +20937,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCropCategoryFilter<$PrismaModel>
     _max?: NestedEnumCropCategoryFilter<$PrismaModel>
-  }
-
-  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type EnumCropStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -18158,6 +21293,164 @@ export namespace Prisma {
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
   }
 
+  export type EnumAuditActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionFilter<$PrismaModel> | $Enums.AuditAction
+  }
+  export type JsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type UserNullableScalarRelationFilter = {
+    is?: UserWhereInput | null
+    isNot?: UserWhereInput | null
+  }
+
+  export type AuditLogCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    details?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AuditLogMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type AuditLogMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    action?: SortOrder
+    ipAddress?: SortOrder
+    userAgent?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type EnumAuditActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionWithAggregatesFilter<$PrismaModel> | $Enums.AuditAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditActionFilter<$PrismaModel>
+    _max?: NestedEnumAuditActionFilter<$PrismaModel>
+  }
+  export type JsonWithAggregatesFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
+        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
+
+  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedJsonFilter<$PrismaModel>
+    _max?: NestedJsonFilter<$PrismaModel>
+  }
+
+  export type EnumTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeFilter<$PrismaModel> | $Enums.TransactionType
+  }
+
+  export type BlockchainTransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    transactionType?: SortOrder
+    data?: SortOrder
+    dataHash?: SortOrder
+    blockHash?: SortOrder
+    previousBlockHash?: SortOrder
+    nonce?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BlockchainTransactionAvgOrderByAggregateInput = {
+    nonce?: SortOrder
+  }
+
+  export type BlockchainTransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    transactionType?: SortOrder
+    dataHash?: SortOrder
+    blockHash?: SortOrder
+    previousBlockHash?: SortOrder
+    nonce?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BlockchainTransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    transactionType?: SortOrder
+    dataHash?: SortOrder
+    blockHash?: SortOrder
+    previousBlockHash?: SortOrder
+    nonce?: SortOrder
+    createdAt?: SortOrder
+  }
+
+  export type BlockchainTransactionSumOrderByAggregateInput = {
+    nonce?: SortOrder
+  }
+
+  export type EnumTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.TransactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumTransactionTypeFilter<$PrismaModel>
+  }
+
   export type AccountCreateNestedManyWithoutUserInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -18219,6 +21512,20 @@ export namespace Prisma {
     connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
     createMany?: NotificationCreateManyUserInputEnvelope
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type AuditLogCreateNestedManyWithoutUserInput = {
+    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
+    createMany?: AuditLogCreateManyUserInputEnvelope
+    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+  }
+
+  export type BlockchainTransactionCreateNestedManyWithoutUserInput = {
+    create?: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput> | BlockchainTransactionCreateWithoutUserInput[] | BlockchainTransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BlockchainTransactionCreateOrConnectWithoutUserInput | BlockchainTransactionCreateOrConnectWithoutUserInput[]
+    createMany?: BlockchainTransactionCreateManyUserInputEnvelope
+    connect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
   }
 
   export type AccountUncheckedCreateNestedManyWithoutUserInput = {
@@ -18284,6 +21591,20 @@ export namespace Prisma {
     connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
   }
 
+  export type AuditLogUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
+    createMany?: AuditLogCreateManyUserInputEnvelope
+    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+  }
+
+  export type BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput> | BlockchainTransactionCreateWithoutUserInput[] | BlockchainTransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BlockchainTransactionCreateOrConnectWithoutUserInput | BlockchainTransactionCreateOrConnectWithoutUserInput[]
+    createMany?: BlockchainTransactionCreateManyUserInputEnvelope
+    connect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
@@ -18322,6 +21643,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -18454,6 +21779,34 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
+  export type AuditLogUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
+    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AuditLogCreateManyUserInputEnvelope
+    set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+  }
+
+  export type BlockchainTransactionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput> | BlockchainTransactionCreateWithoutUserInput[] | BlockchainTransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BlockchainTransactionCreateOrConnectWithoutUserInput | BlockchainTransactionCreateOrConnectWithoutUserInput[]
+    upsert?: BlockchainTransactionUpsertWithWhereUniqueWithoutUserInput | BlockchainTransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BlockchainTransactionCreateManyUserInputEnvelope
+    set?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    disconnect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    delete?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    connect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    update?: BlockchainTransactionUpdateWithWhereUniqueWithoutUserInput | BlockchainTransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BlockchainTransactionUpdateManyWithWhereWithoutUserInput | BlockchainTransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BlockchainTransactionScalarWhereInput | BlockchainTransactionScalarWhereInput[]
+  }
+
   export type AccountUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<AccountCreateWithoutUserInput, AccountUncheckedCreateWithoutUserInput> | AccountCreateWithoutUserInput[] | AccountUncheckedCreateWithoutUserInput[]
     connectOrCreate?: AccountCreateOrConnectWithoutUserInput | AccountCreateOrConnectWithoutUserInput[]
@@ -18580,6 +21933,34 @@ export namespace Prisma {
     deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
   }
 
+  export type AuditLogUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput> | AuditLogCreateWithoutUserInput[] | AuditLogUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: AuditLogCreateOrConnectWithoutUserInput | AuditLogCreateOrConnectWithoutUserInput[]
+    upsert?: AuditLogUpsertWithWhereUniqueWithoutUserInput | AuditLogUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: AuditLogCreateManyUserInputEnvelope
+    set?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    disconnect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    delete?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    connect?: AuditLogWhereUniqueInput | AuditLogWhereUniqueInput[]
+    update?: AuditLogUpdateWithWhereUniqueWithoutUserInput | AuditLogUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: AuditLogUpdateManyWithWhereWithoutUserInput | AuditLogUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+  }
+
+  export type BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput> | BlockchainTransactionCreateWithoutUserInput[] | BlockchainTransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: BlockchainTransactionCreateOrConnectWithoutUserInput | BlockchainTransactionCreateOrConnectWithoutUserInput[]
+    upsert?: BlockchainTransactionUpsertWithWhereUniqueWithoutUserInput | BlockchainTransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: BlockchainTransactionCreateManyUserInputEnvelope
+    set?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    disconnect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    delete?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    connect?: BlockchainTransactionWhereUniqueInput | BlockchainTransactionWhereUniqueInput[]
+    update?: BlockchainTransactionUpdateWithWhereUniqueWithoutUserInput | BlockchainTransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: BlockchainTransactionUpdateManyWithWhereWithoutUserInput | BlockchainTransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: BlockchainTransactionScalarWhereInput | BlockchainTransactionScalarWhereInput[]
+  }
+
   export type UserCreateNestedOneWithoutAccountsInput = {
     create?: XOR<UserCreateWithoutAccountsInput, UserUncheckedCreateWithoutAccountsInput>
     connectOrCreate?: UserCreateOrConnectWithoutAccountsInput
@@ -18646,10 +22027,6 @@ export namespace Prisma {
 
   export type EnumCropCategoryFieldUpdateOperationsInput = {
     set?: $Enums.CropCategory
-  }
-
-  export type BoolFieldUpdateOperationsInput = {
-    set?: boolean
   }
 
   export type CropListingUpdatecertificationsInput = {
@@ -18808,6 +22185,44 @@ export namespace Prisma {
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
   }
 
+  export type UserCreateNestedOneWithoutAuditLogsInput = {
+    create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumAuditActionFieldUpdateOperationsInput = {
+    set?: $Enums.AuditAction
+  }
+
+  export type UserUpdateOneWithoutAuditLogsNestedInput = {
+    create?: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutAuditLogsInput
+    upsert?: UserUpsertWithoutAuditLogsInput
+    disconnect?: UserWhereInput | boolean
+    delete?: UserWhereInput | boolean
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutAuditLogsInput, UserUpdateWithoutAuditLogsInput>, UserUncheckedUpdateWithoutAuditLogsInput>
+  }
+
+  export type UserCreateNestedOneWithoutBlockchainTransactionsInput = {
+    create?: XOR<UserCreateWithoutBlockchainTransactionsInput, UserUncheckedCreateWithoutBlockchainTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBlockchainTransactionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumTransactionTypeFieldUpdateOperationsInput = {
+    set?: $Enums.TransactionType
+  }
+
+  export type UserUpdateOneRequiredWithoutBlockchainTransactionsNestedInput = {
+    create?: XOR<UserCreateWithoutBlockchainTransactionsInput, UserUncheckedCreateWithoutBlockchainTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutBlockchainTransactionsInput
+    upsert?: UserUpsertWithoutBlockchainTransactionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutBlockchainTransactionsInput, UserUpdateWithoutBlockchainTransactionsInput>, UserUncheckedUpdateWithoutBlockchainTransactionsInput>
+  }
+
   export type NestedStringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -18885,6 +22300,11 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -19015,6 +22435,14 @@ export namespace Prisma {
     _max?: NestedIntFilter<$PrismaModel>
   }
 
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
@@ -19052,11 +22480,6 @@ export namespace Prisma {
     not?: NestedEnumCropCategoryFilter<$PrismaModel> | $Enums.CropCategory
   }
 
-  export type NestedBoolFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolFilter<$PrismaModel> | boolean
-  }
-
   export type NestedEnumCropStatusFilter<$PrismaModel = never> = {
     equals?: $Enums.CropStatus | EnumCropStatusFieldRefInput<$PrismaModel>
     in?: $Enums.CropStatus[] | ListEnumCropStatusFieldRefInput<$PrismaModel>
@@ -19072,14 +22495,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumCropCategoryFilter<$PrismaModel>
     _max?: NestedEnumCropCategoryFilter<$PrismaModel>
-  }
-
-  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
-    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedBoolFilter<$PrismaModel>
-    _max?: NestedBoolFilter<$PrismaModel>
   }
 
   export type NestedEnumCropStatusWithAggregatesFilter<$PrismaModel = never> = {
@@ -19147,6 +22562,63 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumNotificationTypeFilter<$PrismaModel>
     _max?: NestedEnumNotificationTypeFilter<$PrismaModel>
+  }
+
+  export type NestedEnumAuditActionFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionFilter<$PrismaModel> | $Enums.AuditAction
+  }
+
+  export type NestedEnumAuditActionWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.AuditAction | EnumAuditActionFieldRefInput<$PrismaModel>
+    in?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    notIn?: $Enums.AuditAction[] | ListEnumAuditActionFieldRefInput<$PrismaModel>
+    not?: NestedEnumAuditActionWithAggregatesFilter<$PrismaModel> | $Enums.AuditAction
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumAuditActionFilter<$PrismaModel>
+    _max?: NestedEnumAuditActionFilter<$PrismaModel>
+  }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+    path?: string[]
+    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
+    string_contains?: string | StringFieldRefInput<$PrismaModel>
+    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
+    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
+    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
+    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  }
+
+  export type NestedEnumTransactionTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeFilter<$PrismaModel> | $Enums.TransactionType
+  }
+
+  export type NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.TransactionType | EnumTransactionTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    notIn?: $Enums.TransactionType[] | ListEnumTransactionTypeFieldRefInput<$PrismaModel>
+    not?: NestedEnumTransactionTypeWithAggregatesFilter<$PrismaModel> | $Enums.TransactionType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumTransactionTypeFilter<$PrismaModel>
+    _max?: NestedEnumTransactionTypeFilter<$PrismaModel>
   }
 
   export type AccountCreateWithoutUserInput = {
@@ -19443,6 +22915,66 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type AuditLogCreateWithoutUserInput = {
+    id?: string
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AuditLogUncheckedCreateWithoutUserInput = {
+    id?: string
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type AuditLogCreateOrConnectWithoutUserInput = {
+    where: AuditLogWhereUniqueInput
+    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type AuditLogCreateManyUserInputEnvelope = {
+    data: AuditLogCreateManyUserInput | AuditLogCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type BlockchainTransactionCreateWithoutUserInput = {
+    id?: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
+    createdAt?: Date | string
+  }
+
+  export type BlockchainTransactionUncheckedCreateWithoutUserInput = {
+    id?: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
+    createdAt?: Date | string
+  }
+
+  export type BlockchainTransactionCreateOrConnectWithoutUserInput = {
+    where: BlockchainTransactionWhereUniqueInput
+    create: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type BlockchainTransactionCreateManyUserInputEnvelope = {
+    data: BlockchainTransactionCreateManyUserInput | BlockchainTransactionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
   export type AccountUpsertWithWhereUniqueWithoutUserInput = {
     where: AccountWhereUniqueInput
     update: XOR<AccountUpdateWithoutUserInput, AccountUncheckedUpdateWithoutUserInput>
@@ -19700,6 +23232,66 @@ export namespace Prisma {
     createdAt?: DateTimeFilter<"Notification"> | Date | string
   }
 
+  export type AuditLogUpsertWithWhereUniqueWithoutUserInput = {
+    where: AuditLogWhereUniqueInput
+    update: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
+    create: XOR<AuditLogCreateWithoutUserInput, AuditLogUncheckedCreateWithoutUserInput>
+  }
+
+  export type AuditLogUpdateWithWhereUniqueWithoutUserInput = {
+    where: AuditLogWhereUniqueInput
+    data: XOR<AuditLogUpdateWithoutUserInput, AuditLogUncheckedUpdateWithoutUserInput>
+  }
+
+  export type AuditLogUpdateManyWithWhereWithoutUserInput = {
+    where: AuditLogScalarWhereInput
+    data: XOR<AuditLogUpdateManyMutationInput, AuditLogUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type AuditLogScalarWhereInput = {
+    AND?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+    OR?: AuditLogScalarWhereInput[]
+    NOT?: AuditLogScalarWhereInput | AuditLogScalarWhereInput[]
+    id?: StringFilter<"AuditLog"> | string
+    userId?: StringNullableFilter<"AuditLog"> | string | null
+    action?: EnumAuditActionFilter<"AuditLog"> | $Enums.AuditAction
+    details?: JsonFilter<"AuditLog">
+    ipAddress?: StringNullableFilter<"AuditLog"> | string | null
+    userAgent?: StringNullableFilter<"AuditLog"> | string | null
+    createdAt?: DateTimeFilter<"AuditLog"> | Date | string
+  }
+
+  export type BlockchainTransactionUpsertWithWhereUniqueWithoutUserInput = {
+    where: BlockchainTransactionWhereUniqueInput
+    update: XOR<BlockchainTransactionUpdateWithoutUserInput, BlockchainTransactionUncheckedUpdateWithoutUserInput>
+    create: XOR<BlockchainTransactionCreateWithoutUserInput, BlockchainTransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type BlockchainTransactionUpdateWithWhereUniqueWithoutUserInput = {
+    where: BlockchainTransactionWhereUniqueInput
+    data: XOR<BlockchainTransactionUpdateWithoutUserInput, BlockchainTransactionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type BlockchainTransactionUpdateManyWithWhereWithoutUserInput = {
+    where: BlockchainTransactionScalarWhereInput
+    data: XOR<BlockchainTransactionUpdateManyMutationInput, BlockchainTransactionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type BlockchainTransactionScalarWhereInput = {
+    AND?: BlockchainTransactionScalarWhereInput | BlockchainTransactionScalarWhereInput[]
+    OR?: BlockchainTransactionScalarWhereInput[]
+    NOT?: BlockchainTransactionScalarWhereInput | BlockchainTransactionScalarWhereInput[]
+    id?: StringFilter<"BlockchainTransaction"> | string
+    userId?: StringFilter<"BlockchainTransaction"> | string
+    transactionType?: EnumTransactionTypeFilter<"BlockchainTransaction"> | $Enums.TransactionType
+    data?: JsonFilter<"BlockchainTransaction">
+    dataHash?: StringFilter<"BlockchainTransaction"> | string
+    blockHash?: StringFilter<"BlockchainTransaction"> | string
+    previousBlockHash?: StringNullableFilter<"BlockchainTransaction"> | string | null
+    nonce?: IntFilter<"BlockchainTransaction"> | number
+    createdAt?: DateTimeFilter<"BlockchainTransaction"> | Date | string
+  }
+
   export type UserCreateWithoutAccountsInput = {
     id?: string
     name?: string | null
@@ -19718,6 +23310,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionCreateNestedManyWithoutUserInput
@@ -19728,6 +23327,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutAccountsInput = {
@@ -19748,6 +23349,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
@@ -19758,6 +23366,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutAccountsInput = {
@@ -19794,6 +23404,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUpdateManyWithoutUserNestedInput
@@ -19804,6 +23421,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutAccountsInput = {
@@ -19824,6 +23443,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
@@ -19834,6 +23460,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSessionsInput = {
@@ -19854,6 +23482,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -19864,6 +23499,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSessionsInput = {
@@ -19884,6 +23521,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -19894,6 +23538,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSessionsInput = {
@@ -19930,6 +23576,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -19940,6 +23593,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSessionsInput = {
@@ -19960,6 +23615,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -19970,6 +23632,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutCropListingsInput = {
@@ -19990,6 +23654,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20000,6 +23671,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCropListingsInput = {
@@ -20020,6 +23693,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20030,6 +23710,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCropListingsInput = {
@@ -20102,6 +23784,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20112,6 +23801,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCropListingsInput = {
@@ -20132,6 +23823,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20142,6 +23840,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type BidUpsertWithWhereUniqueWithoutListingInput = {
@@ -20233,6 +23933,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20243,6 +23950,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutBidsInput = {
@@ -20263,6 +23972,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20273,6 +23989,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutBidsInput = {
@@ -20370,6 +24088,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20380,6 +24105,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutBidsInput = {
@@ -20400,6 +24127,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20410,6 +24144,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutSentMessagesInput = {
@@ -20430,6 +24166,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20440,6 +24183,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutSentMessagesInput = {
@@ -20460,6 +24205,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20470,6 +24222,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutSentMessagesInput = {
@@ -20495,6 +24249,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20505,6 +24266,8 @@ export namespace Prisma {
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutReceivedMessagesInput = {
@@ -20525,6 +24288,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20535,6 +24305,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutReceivedMessagesInput = {
@@ -20571,6 +24343,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20581,6 +24360,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutSentMessagesInput = {
@@ -20601,6 +24382,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20611,6 +24399,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutReceivedMessagesInput = {
@@ -20642,6 +24432,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20652,6 +24449,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutReceivedMessagesInput = {
@@ -20672,6 +24471,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20682,6 +24488,8 @@ export namespace Prisma {
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutRatingsGivenInput = {
@@ -20702,6 +24510,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20712,6 +24527,8 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRatingsGivenInput = {
@@ -20732,6 +24549,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20742,6 +24566,8 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRatingsGivenInput = {
@@ -20767,6 +24593,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20777,6 +24610,8 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutRatingsReceivedInput = {
@@ -20797,6 +24632,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -20807,6 +24649,8 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutRatingsReceivedInput = {
@@ -20843,6 +24687,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20853,6 +24704,8 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRatingsGivenInput = {
@@ -20873,6 +24726,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20883,6 +24743,8 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserUpsertWithoutRatingsReceivedInput = {
@@ -20914,6 +24776,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -20924,6 +24793,8 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutRatingsReceivedInput = {
@@ -20944,6 +24815,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -20954,6 +24832,8 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -20974,6 +24854,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountCreateNestedManyWithoutUserInput
@@ -20984,6 +24871,8 @@ export namespace Prisma {
     receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
     ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -21004,6 +24893,13 @@ export namespace Prisma {
     trustScore?: number
     totalRatings?: number
     avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
     createdAt?: Date | string
     updatedAt?: Date | string
     accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
@@ -21014,6 +24910,8 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
     ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
     ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -21050,6 +24948,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUpdateManyWithoutUserNestedInput
@@ -21060,6 +24965,8 @@ export namespace Prisma {
     receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
     ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -21080,6 +24987,13 @@ export namespace Prisma {
     trustScore?: FloatFieldUpdateOperationsInput | number
     totalRatings?: IntFieldUpdateOperationsInput | number
     avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
@@ -21090,6 +25004,352 @@ export namespace Prisma {
     receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
     ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
     ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutAuditLogsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    password?: string | null
+    phone?: string | null
+    role?: $Enums.UserRole
+    address?: string | null
+    city?: string | null
+    state?: string | null
+    pincode?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    trustScore?: number
+    totalRatings?: number
+    avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    cropListings?: CropListingCreateNestedManyWithoutFarmerInput
+    bids?: BidCreateNestedManyWithoutBuyerInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
+    ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutAuditLogsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    password?: string | null
+    phone?: string | null
+    role?: $Enums.UserRole
+    address?: string | null
+    city?: string | null
+    state?: string | null
+    pincode?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    trustScore?: number
+    totalRatings?: number
+    avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    cropListings?: CropListingUncheckedCreateNestedManyWithoutFarmerInput
+    bids?: BidUncheckedCreateNestedManyWithoutBuyerInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
+    ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    blockchainTransactions?: BlockchainTransactionUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutAuditLogsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
+  }
+
+  export type UserUpsertWithoutAuditLogsInput = {
+    update: XOR<UserUpdateWithoutAuditLogsInput, UserUncheckedUpdateWithoutAuditLogsInput>
+    create: XOR<UserCreateWithoutAuditLogsInput, UserUncheckedCreateWithoutAuditLogsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutAuditLogsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutAuditLogsInput, UserUncheckedUpdateWithoutAuditLogsInput>
+  }
+
+  export type UserUpdateWithoutAuditLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    pincode?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    trustScore?: FloatFieldUpdateOperationsInput | number
+    totalRatings?: IntFieldUpdateOperationsInput | number
+    avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    cropListings?: CropListingUpdateManyWithoutFarmerNestedInput
+    bids?: BidUpdateManyWithoutBuyerNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
+    ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutAuditLogsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    pincode?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    trustScore?: FloatFieldUpdateOperationsInput | number
+    totalRatings?: IntFieldUpdateOperationsInput | number
+    avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    cropListings?: CropListingUncheckedUpdateManyWithoutFarmerNestedInput
+    bids?: BidUncheckedUpdateManyWithoutBuyerNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
+    ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    blockchainTransactions?: BlockchainTransactionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutBlockchainTransactionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    password?: string | null
+    phone?: string | null
+    role?: $Enums.UserRole
+    address?: string | null
+    city?: string | null
+    state?: string | null
+    pincode?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    trustScore?: number
+    totalRatings?: number
+    avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountCreateNestedManyWithoutUserInput
+    sessions?: SessionCreateNestedManyWithoutUserInput
+    cropListings?: CropListingCreateNestedManyWithoutFarmerInput
+    bids?: BidCreateNestedManyWithoutBuyerInput
+    sentMessages?: MessageCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageCreateNestedManyWithoutReceiverInput
+    ratingsGiven?: RatingCreateNestedManyWithoutRaterInput
+    ratingsReceived?: RatingCreateNestedManyWithoutRatedUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutBlockchainTransactionsInput = {
+    id?: string
+    name?: string | null
+    email: string
+    emailVerified?: Date | string | null
+    image?: string | null
+    password?: string | null
+    phone?: string | null
+    role?: $Enums.UserRole
+    address?: string | null
+    city?: string | null
+    state?: string | null
+    pincode?: string | null
+    latitude?: number | null
+    longitude?: number | null
+    trustScore?: number
+    totalRatings?: number
+    avgRating?: number
+    isActive?: boolean
+    failedLoginAttempts?: number
+    lockedUntil?: Date | string | null
+    lastLoginAt?: Date | string | null
+    passwordChangedAt?: Date | string | null
+    twoFactorEnabled?: boolean
+    twoFactorSecret?: string | null
+    createdAt?: Date | string
+    updatedAt?: Date | string
+    accounts?: AccountUncheckedCreateNestedManyWithoutUserInput
+    sessions?: SessionUncheckedCreateNestedManyWithoutUserInput
+    cropListings?: CropListingUncheckedCreateNestedManyWithoutFarmerInput
+    bids?: BidUncheckedCreateNestedManyWithoutBuyerInput
+    sentMessages?: MessageUncheckedCreateNestedManyWithoutSenderInput
+    receivedMessages?: MessageUncheckedCreateNestedManyWithoutReceiverInput
+    ratingsGiven?: RatingUncheckedCreateNestedManyWithoutRaterInput
+    ratingsReceived?: RatingUncheckedCreateNestedManyWithoutRatedUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    auditLogs?: AuditLogUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutBlockchainTransactionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutBlockchainTransactionsInput, UserUncheckedCreateWithoutBlockchainTransactionsInput>
+  }
+
+  export type UserUpsertWithoutBlockchainTransactionsInput = {
+    update: XOR<UserUpdateWithoutBlockchainTransactionsInput, UserUncheckedUpdateWithoutBlockchainTransactionsInput>
+    create: XOR<UserCreateWithoutBlockchainTransactionsInput, UserUncheckedCreateWithoutBlockchainTransactionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutBlockchainTransactionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutBlockchainTransactionsInput, UserUncheckedUpdateWithoutBlockchainTransactionsInput>
+  }
+
+  export type UserUpdateWithoutBlockchainTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    pincode?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    trustScore?: FloatFieldUpdateOperationsInput | number
+    totalRatings?: IntFieldUpdateOperationsInput | number
+    avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUpdateManyWithoutUserNestedInput
+    sessions?: SessionUpdateManyWithoutUserNestedInput
+    cropListings?: CropListingUpdateManyWithoutFarmerNestedInput
+    bids?: BidUpdateManyWithoutBuyerNestedInput
+    sentMessages?: MessageUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUpdateManyWithoutReceiverNestedInput
+    ratingsGiven?: RatingUpdateManyWithoutRaterNestedInput
+    ratingsReceived?: RatingUpdateManyWithoutRatedUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutBlockchainTransactionsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: NullableStringFieldUpdateOperationsInput | string | null
+    email?: StringFieldUpdateOperationsInput | string
+    emailVerified?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    image?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    phone?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumUserRoleFieldUpdateOperationsInput | $Enums.UserRole
+    address?: NullableStringFieldUpdateOperationsInput | string | null
+    city?: NullableStringFieldUpdateOperationsInput | string | null
+    state?: NullableStringFieldUpdateOperationsInput | string | null
+    pincode?: NullableStringFieldUpdateOperationsInput | string | null
+    latitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    longitude?: NullableFloatFieldUpdateOperationsInput | number | null
+    trustScore?: FloatFieldUpdateOperationsInput | number
+    totalRatings?: IntFieldUpdateOperationsInput | number
+    avgRating?: FloatFieldUpdateOperationsInput | number
+    isActive?: BoolFieldUpdateOperationsInput | boolean
+    failedLoginAttempts?: IntFieldUpdateOperationsInput | number
+    lockedUntil?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    lastLoginAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    passwordChangedAt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    twoFactorEnabled?: BoolFieldUpdateOperationsInput | boolean
+    twoFactorSecret?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    accounts?: AccountUncheckedUpdateManyWithoutUserNestedInput
+    sessions?: SessionUncheckedUpdateManyWithoutUserNestedInput
+    cropListings?: CropListingUncheckedUpdateManyWithoutFarmerNestedInput
+    bids?: BidUncheckedUpdateManyWithoutBuyerNestedInput
+    sentMessages?: MessageUncheckedUpdateManyWithoutSenderNestedInput
+    receivedMessages?: MessageUncheckedUpdateManyWithoutReceiverNestedInput
+    ratingsGiven?: RatingUncheckedUpdateManyWithoutRaterNestedInput
+    ratingsReceived?: RatingUncheckedUpdateManyWithoutRatedUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    auditLogs?: AuditLogUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type AccountCreateManyUserInput = {
@@ -21190,6 +25450,26 @@ export namespace Prisma {
     link?: string | null
     data?: NullableJsonNullValueInput | InputJsonValue
     isRead?: boolean
+    createdAt?: Date | string
+  }
+
+  export type AuditLogCreateManyUserInput = {
+    id?: string
+    action: $Enums.AuditAction
+    details: JsonNullValueInput | InputJsonValue
+    ipAddress?: string | null
+    userAgent?: string | null
+    createdAt?: Date | string
+  }
+
+  export type BlockchainTransactionCreateManyUserInput = {
+    id?: string
+    transactionType: $Enums.TransactionType
+    data: JsonNullValueInput | InputJsonValue
+    dataHash: string
+    blockHash: string
+    previousBlockHash?: string | null
+    nonce: number
     createdAt?: Date | string
   }
 
@@ -21495,6 +25775,66 @@ export namespace Prisma {
     link?: NullableStringFieldUpdateOperationsInput | string | null
     data?: NullableJsonNullValueInput | InputJsonValue
     isRead?: BoolFieldUpdateOperationsInput | boolean
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditLogUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditLogUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type AuditLogUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    action?: EnumAuditActionFieldUpdateOperationsInput | $Enums.AuditAction
+    details?: JsonNullValueInput | InputJsonValue
+    ipAddress?: NullableStringFieldUpdateOperationsInput | string | null
+    userAgent?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type BlockchainTransactionUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    transactionType?: EnumTransactionTypeFieldUpdateOperationsInput | $Enums.TransactionType
+    data?: JsonNullValueInput | InputJsonValue
+    dataHash?: StringFieldUpdateOperationsInput | string
+    blockHash?: StringFieldUpdateOperationsInput | string
+    previousBlockHash?: NullableStringFieldUpdateOperationsInput | string | null
+    nonce?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 

@@ -2,7 +2,7 @@ import { z } from "zod";
 import { TRPCError } from "@trpc/server";
 
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import type { PrismaClient } from "~/generated/prisma";
+import type { PrismaClient } from "../../../../generated/prisma";
 
 // Notification types enum matching Prisma schema
 type NotificationType = 
@@ -34,7 +34,7 @@ export async function createNotification(
       title: params.title,
       message: params.message,
       link: params.link,
-      data: params.data,
+      data: params.data as any,
     },
   });
 }
@@ -235,7 +235,7 @@ export const notificationRouter = createTRPCRouter({
         },
       };
 
-      const data = notificationData[type] ?? notificationData.SYSTEM;
+      const data = (notificationData[type] ?? notificationData.SYSTEM)!;
 
       return createNotification(ctx.db, {
         userId: ctx.session.user.id,

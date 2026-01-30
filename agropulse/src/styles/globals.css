@@ -78,11 +78,54 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
+  
+  /* Language-specific font overrides */
+  html:lang(hi) body,
+  html:lang(mr) body {
+    font-family: var(--font-devanagari);
+  }
+  
+  html:lang(te) body {
+    font-family: var(--font-telugu);
+  }
+  
+  html:lang(ta) body {
+    font-family: var(--font-tamil);
+  }
+  
+  html:lang(kn) body {
+    font-family: var(--font-kannada);
+  }
+  
+  html:lang(ml) body {
+    font-family: var(--font-malayalam);
+  }
+  
+  html:lang(gu) body {
+    font-family: var(--font-gujarati);
+  }
+  
+  html:lang(pa) body {
+    font-family: var(--font-gurmukhi);
+  }
+  
+  html:lang(bn) body {
+    font-family: var(--font-bengali);
+  }
 }
 
 @theme {
   --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  
+  --font-devanagari: var(--font-noto-devanagari), "Noto Sans Devanagari", sans-serif;
+  --font-telugu: var(--font-noto-telugu), "Noto Sans Telugu", sans-serif;
+  --font-tamil: var(--font-noto-tamil), "Noto Sans Tamil", sans-serif;
+  --font-kannada: var(--font-noto-kannada), "Noto Sans Kannada", sans-serif;
+  --font-malayalam: var(--font-noto-malayalam), "Noto Sans Malayalam", sans-serif;
+  --font-gujarati: var(--font-noto-gujarati), "Noto Sans Gujarati", sans-serif;
+  --font-gurmukhi: var(--font-noto-gurmukhi), "Noto Sans Gurmukhi", sans-serif;
+  --font-bengali: var(--font-noto-bengali), "Noto Sans Bengali", sans-serif;
   
   --color-primary: hsl(var(--primary));
   --color-primary-foreground: hsl(var(--primary-foreground));

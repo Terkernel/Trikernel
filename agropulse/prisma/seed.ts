@@ -38,6 +38,7 @@ async function main() {
   console.log("\n👥 Creating additional users...");
   
   const additionalUsers = [
+    // Buyers (12 total)
     {
       id: "buyer_seed_001",
       name: "Rajesh Kumar",
@@ -75,6 +76,116 @@ async function main() {
       totalRatings: 45,
     },
     {
+      id: "buyer_seed_004",
+      name: "Vikram Singh",
+      email: "vikram.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Bangalore",
+      state: "Karnataka",
+      phone: "+91 9876543215",
+      trustScore: 85,
+      avgRating: 4.5,
+      totalRatings: 20,
+    },
+    {
+      id: "buyer_seed_005",
+      name: "Fatima Khan",
+      email: "fatima.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Lucknow",
+      state: "Uttar Pradesh",
+      phone: "+91 9876543216",
+      trustScore: 88,
+      avgRating: 4.7,
+      totalRatings: 32,
+    },
+    {
+      id: "buyer_seed_006",
+      name: "Sanjay Verma",
+      email: "sanjay.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Chandigarh",
+      state: "Punjab",
+      phone: "+91 9876543217",
+      trustScore: 82,
+      avgRating: 4.4,
+      totalRatings: 15,
+    },
+    {
+      id: "buyer_seed_007",
+      name: "Deepika Nair",
+      email: "deepika.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Kochi",
+      state: "Kerala",
+      phone: "+91 9876543218",
+      trustScore: 91,
+      avgRating: 4.8,
+      totalRatings: 38,
+    },
+    {
+      id: "buyer_seed_008",
+      name: "Arvind Desai",
+      email: "arvind.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Nagpur",
+      state: "Maharashtra",
+      phone: "+91 9876543219",
+      trustScore: 80,
+      avgRating: 4.3,
+      totalRatings: 12,
+    },
+    {
+      id: "buyer_seed_009",
+      name: "Ishita Roy",
+      email: "ishita.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Kolkata",
+      state: "West Bengal",
+      phone: "+91 9876543220",
+      trustScore: 87,
+      avgRating: 4.6,
+      totalRatings: 28,
+    },
+    {
+      id: "buyer_seed_010",
+      name: "Manoj Gupta",
+      email: "manoj.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Indore",
+      state: "Madhya Pradesh",
+      phone: "+91 9876543221",
+      trustScore: 83,
+      avgRating: 4.4,
+      totalRatings: 18,
+    },
+    {
+      id: "buyer_seed_011",
+      name: "Sneha Patel",
+      email: "sneha.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Surat",
+      state: "Gujarat",
+      phone: "+91 9876543222",
+      trustScore: 89,
+      avgRating: 4.7,
+      totalRatings: 35,
+    },
+    {
+      id: "buyer_seed_012",
+      name: "Rahul Joshi",
+      email: "rahul.buyer@demo.com",
+      role: "BUYER" as const,
+      city: "Vadodara",
+      state: "Gujarat",
+      phone: "+91 9876543223",
+      trustScore: 81,
+      avgRating: 4.3,
+      totalRatings: 22,
+    },
+    
+    // Farmers (10 total)
+    {
       id: "farmer_seed_001",
       name: "Suresh Reddy",
       email: "suresh.farmer@demo.com",
@@ -98,6 +209,102 @@ async function main() {
       avgRating: 4.0,
       totalRatings: 6,
     },
+    {
+      id: "farmer_seed_003",
+      name: "Harpreet Singh",
+      email: "harpreet.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Ludhiana",
+      state: "Punjab",
+      phone: "+91 9876543224",
+      trustScore: 89,
+      avgRating: 4.7,
+      totalRatings: 30,
+    },
+    {
+      id: "farmer_seed_004",
+      name: "Lakshmi Amma",
+      email: "lakshmi.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Thrissur",
+      state: "Kerala",
+      phone: "+91 9876543225",
+      trustScore: 86,
+      avgRating: 4.5,
+      totalRatings: 22,
+    },
+    {
+      id: "farmer_seed_005",
+      name: "Bhavesh Parmar",
+      email: "bhavesh.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Gandhinagar",
+      state: "Gujarat",
+      phone: "+91 9876543226",
+      trustScore: 84,
+      avgRating: 4.4,
+      totalRatings: 16,
+    },
+    {
+      id: "farmer_seed_006",
+      name: "Anupam Das",
+      email: "anupam.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Bankura",
+      state: "West Bengal",
+      phone: "+91 9876543227",
+      trustScore: 77,
+      avgRating: 4.1,
+      totalRatings: 9,
+    },
+    {
+      id: "farmer_seed_007",
+      name: "Chitra Singh",
+      email: "chitra.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Bhopal",
+      state: "Madhya Pradesh",
+      phone: "+91 9876543228",
+      trustScore: 85,
+      avgRating: 4.5,
+      totalRatings: 25,
+    },
+    {
+      id: "farmer_seed_008",
+      name: "Ramesh Rao",
+      email: "ramesh.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Belgaum",
+      state: "Karnataka",
+      phone: "+91 9876543229",
+      trustScore: 82,
+      avgRating: 4.3,
+      totalRatings: 14,
+    },
+    {
+      id: "farmer_seed_009",
+      name: "Prabhu Kumar",
+      email: "prabhu.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Salem",
+      state: "Tamil Nadu",
+      phone: "+91 9876543230",
+      trustScore: 80,
+      avgRating: 4.2,
+      totalRatings: 11,
+    },
+    {
+      id: "farmer_seed_010",
+      name: "Gokul Nath",
+      email: "gokul.farmer@demo.com",
+      role: "FARMER" as const,
+      city: "Belgaum",
+      state: "Karnataka",
+      phone: "+91 9876543231",
+      trustScore: 87,
+      avgRating: 4.6,
+      totalRatings: 29,
+    },
   ];
 
   for (const user of additionalUsers) {
@@ -109,10 +316,11 @@ async function main() {
   }
   console.log(`✅ Created ${additionalUsers.length} additional users`);
 
-  // Create Crop Listings for the main user (as farmer)
+  // Create Crop Listings for the main user (as farmer) and other farmers
   console.log("\n🌾 Creating crop listings...");
   
   const cropListings = [
+    // Main user listings (5 crops)
     {
       id: "listing_seed_001",
       farmerId: MAIN_USER_ID,
@@ -223,6 +431,226 @@ async function main() {
       aiSellTimeSuggestion: "Early season premium. Book advance orders.",
       aiConfidenceScore: 0.88,
     },
+    
+    // Farmer 1 listings (Suresh Reddy - Telangana)
+    {
+      id: "listing_seed_006",
+      farmerId: "farmer_seed_001",
+      cropName: "Rice",
+      category: "GRAINS" as const,
+      quantity: 60,
+      unit: "quintal",
+      expectedPrice: 2800,
+      minPrice: 2600,
+      description: "Premium long grain rice from Telangana, suitable for export. Clean and well dried.",
+      qualityGrade: "A",
+      isCertified: true,
+      certifications: ["GI Tagged"],
+      images: [],
+      harvestLocation: "Hyderabad, Telangana",
+      harvestDate: new Date("2025-12-01"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-02-28"),
+      aiPredictedPrice: 3000,
+      aiConfidenceScore: 0.82,
+    },
+    {
+      id: "listing_seed_007",
+      farmerId: "farmer_seed_001",
+      cropName: "Cotton",
+      category: "OILSEEDS" as const,
+      quantity: 25,
+      unit: "quintal",
+      expectedPrice: 6500,
+      minPrice: 6000,
+      description: "High quality cotton, long staple, suitable for textile industry.",
+      qualityGrade: "A",
+      isCertified: false,
+      certifications: [],
+      images: [],
+      harvestLocation: "Hyderabad, Telangana",
+      harvestDate: new Date("2025-11-10"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-31"),
+      aiPredictedPrice: 6800,
+      aiConfidenceScore: 0.80,
+    },
+    
+    // Farmer 2 listings (Meena Devi - Rajasthan)
+    {
+      id: "listing_seed_008",
+      farmerId: "farmer_seed_002",
+      cropName: "Gram (Chickpea)",
+      category: "PULSES" as const,
+      quantity: 35,
+      unit: "quintal",
+      expectedPrice: 5200,
+      minPrice: 4800,
+      description: "Premium quality gram dal, high protein content, organically grown.",
+      qualityGrade: "A",
+      isCertified: true,
+      certifications: ["Organic"],
+      images: [],
+      harvestLocation: "Jaipur, Rajasthan",
+      harvestDate: new Date("2025-12-20"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-15"),
+      aiPredictedPrice: 5500,
+      aiConfidenceScore: 0.79,
+    },
+    {
+      id: "listing_seed_009",
+      farmerId: "farmer_seed_002",
+      cropName: "Mustard",
+      category: "OILSEEDS" as const,
+      quantity: 22,
+      unit: "quintal",
+      expectedPrice: 5800,
+      minPrice: 5400,
+      description: "Cold-pressed mustard seeds, high oil content, suitable for oil extraction.",
+      qualityGrade: "B",
+      isCertified: false,
+      certifications: [],
+      images: [],
+      harvestLocation: "Jaipur, Rajasthan",
+      harvestDate: new Date("2025-11-25"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-02-28"),
+      aiPredictedPrice: 6100,
+      aiConfidenceScore: 0.75,
+    },
+    
+    // Farmer 3 listings (Harpreet Singh - Punjab)
+    {
+      id: "listing_seed_010",
+      farmerId: "farmer_seed_003",
+      cropName: "Maize",
+      category: "GRAINS" as const,
+      quantity: 45,
+      unit: "quintal",
+      expectedPrice: 1900,
+      minPrice: 1700,
+      description: "Hybrid maize, high yield variety, suitable for animal feed and corn flour.",
+      qualityGrade: "A",
+      isCertified: false,
+      certifications: [],
+      images: [],
+      harvestLocation: "Ludhiana, Punjab",
+      harvestDate: new Date("2025-10-15"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-31"),
+      aiPredictedPrice: 2050,
+      aiConfidenceScore: 0.81,
+    },
+    {
+      id: "listing_seed_011",
+      farmerId: "farmer_seed_003",
+      cropName: "Wheat",
+      category: "GRAINS" as const,
+      quantity: 70,
+      unit: "quintal",
+      expectedPrice: 2300,
+      minPrice: 2100,
+      description: "Premium wheat from Punjab, ideal for flour mills. Clean and good germination.",
+      qualityGrade: "A",
+      isCertified: true,
+      certifications: ["FSSAI"],
+      images: [],
+      harvestLocation: "Ludhiana, Punjab",
+      harvestDate: new Date("2025-12-10"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-20"),
+      aiPredictedPrice: 2450,
+      aiConfidenceScore: 0.84,
+    },
+    
+    // Farmer 4 listings (Lakshmi Amma - Kerala)
+    {
+      id: "listing_seed_012",
+      farmerId: "farmer_seed_004",
+      cropName: "Coconut",
+      category: "FRUITS" as const,
+      quantity: 80,
+      unit: "piece",
+      expectedPrice: 50,
+      minPrice: 45,
+      description: "Fresh coconuts, mature stage, suitable for coconut oil and copra production.",
+      qualityGrade: "A",
+      isCertified: false,
+      certifications: [],
+      images: [],
+      harvestLocation: "Thrissur, Kerala",
+      harvestDate: new Date("2026-01-20"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-04-30"),
+      aiPredictedPrice: 55,
+      aiConfidenceScore: 0.77,
+    },
+    {
+      id: "listing_seed_013",
+      farmerId: "farmer_seed_004",
+      cropName: "Pepper",
+      category: "SPICES" as const,
+      quantity: 5,
+      unit: "quintal",
+      expectedPrice: 45000,
+      minPrice: 42000,
+      description: "Black pepper, premium grade, high piperine content. Farm to table quality.",
+      qualityGrade: "Premium",
+      isCertified: true,
+      certifications: ["GI Tagged"],
+      images: [],
+      harvestLocation: "Thrissur, Kerala",
+      harvestDate: new Date("2025-10-30"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-04-15"),
+      aiPredictedPrice: 47000,
+      aiConfidenceScore: 0.86,
+    },
+    
+    // Farmer 5 listings (Bhavesh Parmar - Gujarat)
+    {
+      id: "listing_seed_014",
+      farmerId: "farmer_seed_005",
+      cropName: "Groundnut",
+      category: "OILSEEDS" as const,
+      quantity: 55,
+      unit: "quintal",
+      expectedPrice: 6000,
+      minPrice: 5500,
+      description: "High yielding groundnut variety, good oil content, suitable for oil extraction.",
+      qualityGrade: "A",
+      isCertified: false,
+      certifications: [],
+      images: [],
+      harvestLocation: "Gandhinagar, Gujarat",
+      harvestDate: new Date("2025-11-30"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-31"),
+      aiPredictedPrice: 6300,
+      aiConfidenceScore: 0.80,
+    },
+    {
+      id: "listing_seed_015",
+      farmerId: "farmer_seed_005",
+      cropName: "Cotton",
+      category: "OILSEEDS" as const,
+      quantity: 30,
+      unit: "quintal",
+      expectedPrice: 6200,
+      minPrice: 5800,
+      description: "Bt cotton, certified seeds, high yield, low pesticide requirement.",
+      qualityGrade: "A",
+      isCertified: true,
+      certifications: ["Certified Bt"],
+      images: [],
+      harvestLocation: "Gandhinagar, Gujarat",
+      harvestDate: new Date("2025-12-05"),
+      status: "ACTIVE" as const,
+      expiresAt: new Date("2026-03-15"),
+      aiPredictedPrice: 6500,
+      aiConfidenceScore: 0.82,
+    },
   ];
 
   for (const listing of cropListings) {
@@ -238,6 +666,7 @@ async function main() {
   console.log("\n💰 Creating bids...");
   
   const bids = [
+    // Bids on main user listings
     {
       id: "bid_seed_001",
       listingId: "listing_seed_001",
@@ -298,6 +727,136 @@ async function main() {
       message: "Export order for UAE. Need GI tag certificate and phytosanitary certificate.",
       status: "PENDING" as const,
     },
+    
+    // Bids on Farmer 1 listings
+    {
+      id: "bid_seed_007",
+      listingId: "listing_seed_006",
+      buyerId: "buyer_seed_004",
+      bidAmount: 2900,
+      quantity: 60,
+      totalAmount: 174000,
+      message: "Good quality rice for export market. Will arrange transportation.",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_008",
+      listingId: "listing_seed_006",
+      buyerId: "buyer_seed_005",
+      bidAmount: 2850,
+      quantity: 30,
+      totalAmount: 85500,
+      message: "Bulk order for restaurant supply chain. Need bulk discount.",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_009",
+      listingId: "listing_seed_007",
+      buyerId: "buyer_seed_006",
+      bidAmount: 6300,
+      quantity: 25,
+      totalAmount: 157500,
+      message: "High quality cotton for textile mill. Need certificates.",
+      status: "ACCEPTED" as const,
+    },
+    
+    // Bids on Farmer 2 listings
+    {
+      id: "bid_seed_010",
+      listingId: "listing_seed_008",
+      buyerId: "buyer_seed_007",
+      bidAmount: 5300,
+      quantity: 35,
+      totalAmount: 185500,
+      message: "Organic chickpea for export to EU market. Need organic certification.",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_011",
+      listingId: "listing_seed_009",
+      buyerId: "buyer_seed_008",
+      bidAmount: 5900,
+      quantity: 22,
+      totalAmount: 129800,
+      message: "Mustard seeds for oil extraction. Cold press quality appreciated.",
+      status: "PENDING" as const,
+    },
+    
+    // Bids on Farmer 3 listings
+    {
+      id: "bid_seed_012",
+      listingId: "listing_seed_010",
+      buyerId: "buyer_seed_009",
+      bidAmount: 1950,
+      quantity: 45,
+      totalAmount: 87750,
+      message: "Maize for animal feed manufacturing. Bulk order required.",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_013",
+      listingId: "listing_seed_011",
+      buyerId: "buyer_seed_010",
+      bidAmount: 2400,
+      quantity: 70,
+      totalAmount: 168000,
+      message: "Premium wheat for flour mill. Need quality assurance report.",
+      status: "ACCEPTED" as const,
+    },
+    {
+      id: "bid_seed_014",
+      listingId: "listing_seed_011",
+      buyerId: "buyer_seed_011",
+      bidAmount: 2350,
+      quantity: 35,
+      totalAmount: 82250,
+      message: "Good quality wheat for bakery. Consistent supply needed.",
+      status: "PENDING" as const,
+    },
+    
+    // Bids on Farmer 4 listings
+    {
+      id: "bid_seed_015",
+      listingId: "listing_seed_012",
+      buyerId: "buyer_seed_012",
+      bidAmount: 52,
+      quantity: 80,
+      totalAmount: 4160,
+      message: "Fresh coconuts for retail and processing. Weekly supply possible?",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_016",
+      listingId: "listing_seed_013",
+      buyerId: "buyer_seed_003",
+      bidAmount: 46000,
+      quantity: 5,
+      totalAmount: 230000,
+      message: "Premium black pepper for spice export. GI tag appreciated.",
+      status: "PENDING" as const,
+    },
+    
+    // Bids on Farmer 5 listings
+    {
+      id: "bid_seed_017",
+      listingId: "listing_seed_014",
+      buyerId: "buyer_seed_004",
+      bidAmount: 6100,
+      quantity: 55,
+      totalAmount: 335500,
+      message: "Groundnut for oil extraction. High volume purchase.",
+      status: "PENDING" as const,
+    },
+    {
+      id: "bid_seed_018",
+      listingId: "listing_seed_015",
+      buyerId: "buyer_seed_005",
+      bidAmount: 6400,
+      quantity: 30,
+      totalAmount: 192000,
+      message: "Bt cotton for textile mill. Need certification documents.",
+      status: "ACCEPTED" as const,
+    },
   ];
 
   for (const bid of bids) {
@@ -313,6 +872,7 @@ async function main() {
   console.log("\n💬 Creating messages...");
   
   const messages = [
+    // Messages between main user and buyers
     {
       id: "msg_seed_001",
       senderId: "buyer_seed_001",
@@ -353,6 +913,60 @@ async function main() {
       isRead: false,
       createdAt: new Date("2026-01-29T09:00:00"),
     },
+    
+    // Messages between farmer 1 and buyers
+    {
+      id: "msg_seed_006",
+      senderId: "buyer_seed_004",
+      receiverId: "farmer_seed_001",
+      content: "Your rice quality looks good. Can you provide export documentation?",
+      isRead: true,
+      createdAt: new Date("2026-01-27T14:30:00"),
+    },
+    {
+      id: "msg_seed_007",
+      senderId: "farmer_seed_001",
+      receiverId: "buyer_seed_004",
+      content: "Yes, I have all export documents including phytosanitary certificate.",
+      isRead: true,
+      createdAt: new Date("2026-01-27T15:00:00"),
+    },
+    
+    // Messages between farmer 3 and buyers
+    {
+      id: "msg_seed_008",
+      senderId: "buyer_seed_010",
+      receiverId: "farmer_seed_003",
+      content: "Do you have consistent supply of premium wheat throughout the year?",
+      isRead: false,
+      createdAt: new Date("2026-01-29T10:15:00"),
+    },
+    {
+      id: "msg_seed_009",
+      senderId: "farmer_seed_003",
+      receiverId: "buyer_seed_010",
+      content: "Yes, we have 2 harvests per year. Can supply 100 quintals per month.",
+      isRead: false,
+      createdAt: new Date("2026-01-29T11:00:00"),
+    },
+    
+    // Messages between farmer 4 and buyers
+    {
+      id: "msg_seed_010",
+      senderId: "buyer_seed_003",
+      receiverId: "farmer_seed_004",
+      content: "Your black pepper looks premium. What's the minimum order quantity?",
+      isRead: true,
+      createdAt: new Date("2026-01-28T08:00:00"),
+    },
+    {
+      id: "msg_seed_011",
+      senderId: "farmer_seed_004",
+      receiverId: "buyer_seed_003",
+      content: "MOQ is 1 quintal. Can supply throughout the year. GI certified.",
+      isRead: true,
+      createdAt: new Date("2026-01-28T09:30:00"),
+    },
   ];
 
   for (const msg of messages) {
@@ -368,6 +982,7 @@ async function main() {
   console.log("\n⭐ Creating ratings...");
   
   const ratings = [
+    // Ratings for main user
     {
       id: "rating_seed_001",
       raterId: "buyer_seed_001",
@@ -403,6 +1018,100 @@ async function main() {
       rating: 5,
       review: "Professional export buyer. Clear communication and prompt payment.",
     },
+    
+    // Ratings for Farmer 1
+    {
+      id: "rating_seed_006",
+      raterId: "buyer_seed_004",
+      ratedUserId: "farmer_seed_001",
+      rating: 5,
+      review: "Excellent rice quality. Export-ready. Very professional.",
+    },
+    {
+      id: "rating_seed_007",
+      raterId: "buyer_seed_006",
+      ratedUserId: "farmer_seed_001",
+      rating: 5,
+      review: "High quality cotton. Certification documents provided. Reliable.",
+    },
+    {
+      id: "rating_seed_008",
+      raterId: "farmer_seed_001",
+      ratedUserId: "buyer_seed_004",
+      rating: 5,
+      review: "Excellent buyer. Professional and trustworthy.",
+    },
+    
+    // Ratings for Farmer 2
+    {
+      id: "rating_seed_009",
+      raterId: "buyer_seed_007",
+      ratedUserId: "farmer_seed_002",
+      rating: 4,
+      review: "Good organic gram quality. Fair pricing.",
+    },
+    {
+      id: "rating_seed_010",
+      raterId: "buyer_seed_008",
+      ratedUserId: "farmer_seed_002",
+      rating: 4,
+      review: "Good mustard seeds. Competitive price.",
+    },
+    
+    // Ratings for Farmer 3
+    {
+      id: "rating_seed_011",
+      raterId: "buyer_seed_009",
+      ratedUserId: "farmer_seed_003",
+      rating: 5,
+      review: "High quality maize. Good communication and quick delivery.",
+    },
+    {
+      id: "rating_seed_012",
+      raterId: "buyer_seed_010",
+      ratedUserId: "farmer_seed_003",
+      rating: 5,
+      review: "Premium wheat. Consistent quality. Very professional.",
+    },
+    {
+      id: "rating_seed_013",
+      raterId: "farmer_seed_003",
+      ratedUserId: "buyer_seed_010",
+      rating: 5,
+      review: "Excellent buyer. Bulk orders handled smoothly.",
+    },
+    
+    // Ratings for Farmer 4
+    {
+      id: "rating_seed_014",
+      raterId: "buyer_seed_012",
+      ratedUserId: "farmer_seed_004",
+      rating: 5,
+      review: "Fresh coconuts. Good quality. Reliable supply.",
+    },
+    {
+      id: "rating_seed_015",
+      raterId: "buyer_seed_003",
+      ratedUserId: "farmer_seed_004",
+      rating: 5,
+      review: "Premium black pepper. GI certified. Excellent.",
+    },
+    
+    // Ratings for Farmer 5
+    {
+      id: "rating_seed_016",
+      raterId: "buyer_seed_004",
+      ratedUserId: "farmer_seed_005",
+      rating: 5,
+      review: "High quality groundnut. Good oil content.",
+    },
+    {
+      id: "rating_seed_017",
+      raterId: "buyer_seed_005",
+      ratedUserId: "farmer_seed_005",
+      rating: 5,
+      review: "Certified Bt cotton. Professional seller.",
+    },
   ];
 
   for (const rating of ratings) {
@@ -418,32 +1127,43 @@ async function main() {
   console.log("\n📊 Creating mandi prices...");
   
   const mandiPrices = [
-    // Wheat prices
+    // Wheat prices - Multiple markets
     { cropName: "Wheat", variety: "Sharbati", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 2000, maxPrice: 2400, modalPrice: 2200, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "Lokwan", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 1900, maxPrice: 2300, modalPrice: 2100, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "Sharbati", mandiName: "Indore", state: "Madhya Pradesh", district: "Indore", minPrice: 2100, maxPrice: 2500, modalPrice: 2300, priceDate: new Date("2026-01-30") },
+    { cropName: "Wheat", variety: "PBW", mandiName: "Karnal", state: "Haryana", district: "Karnal", minPrice: 2200, maxPrice: 2600, modalPrice: 2400, priceDate: new Date("2026-01-30") },
+    { cropName: "Wheat", variety: "Sharbati", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 2150, maxPrice: 2550, modalPrice: 2350, priceDate: new Date("2026-01-30") },
     
-    // Rice prices
+    // Rice prices - Multiple markets
     { cropName: "Rice (Basmati)", variety: "1121", mandiName: "Karnal", state: "Haryana", district: "Karnal", minPrice: 4200, maxPrice: 4800, modalPrice: 4500, priceDate: new Date("2026-01-30") },
     { cropName: "Rice (Basmati)", variety: "Pusa", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 4000, maxPrice: 4600, modalPrice: 4300, priceDate: new Date("2026-01-30") },
+    { cropName: "Rice", variety: "Regular", mandiName: "Hyderabad", state: "Telangana", district: "Hyderabad", minPrice: 2500, maxPrice: 3000, modalPrice: 2750, priceDate: new Date("2026-01-30") },
+    { cropName: "Rice", variety: "Regular", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 2700, maxPrice: 3200, modalPrice: 2950, priceDate: new Date("2026-01-30") },
     
     // Tomato prices
     { cropName: "Tomatoes", variety: "Local", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 1500, maxPrice: 2200, modalPrice: 1800, priceDate: new Date("2026-01-30") },
     { cropName: "Tomatoes", variety: "Hybrid", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 1800, maxPrice: 2500, modalPrice: 2100, priceDate: new Date("2026-01-30") },
+    { cropName: "Tomatoes", variety: "Local", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 1600, maxPrice: 2300, modalPrice: 1950, priceDate: new Date("2026-01-30") },
     
     // Onion prices
     { cropName: "Onions", variety: "Red", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 1000, maxPrice: 1500, modalPrice: 1200, priceDate: new Date("2026-01-30") },
     { cropName: "Onions", variety: "White", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 1100, maxPrice: 1600, modalPrice: 1350, priceDate: new Date("2026-01-30") },
+    { cropName: "Onions", variety: "Red", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 1200, maxPrice: 1700, modalPrice: 1450, priceDate: new Date("2026-01-30") },
     
     // Mango prices
     { cropName: "Mangoes (Alphonso)", variety: "Alphonso", mandiName: "Ratnagiri", state: "Maharashtra", district: "Ratnagiri", minPrice: 7500, maxPrice: 10000, modalPrice: 8500, priceDate: new Date("2026-01-30") },
     
-    // More crops
+    // Pulses and More crops
     { cropName: "Potato", variety: "Jyoti", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 800, maxPrice: 1200, modalPrice: 1000, priceDate: new Date("2026-01-30") },
     { cropName: "Soybean", variety: "Yellow", mandiName: "Indore", state: "Madhya Pradesh", district: "Indore", minPrice: 4500, maxPrice: 5200, modalPrice: 4800, priceDate: new Date("2026-01-30") },
     { cropName: "Cotton", variety: "Long Staple", mandiName: "Rajkot", state: "Gujarat", district: "Rajkot", minPrice: 6000, maxPrice: 7000, modalPrice: 6500, priceDate: new Date("2026-01-30") },
     { cropName: "Groundnut", variety: "Bold", mandiName: "Junagadh", state: "Gujarat", district: "Junagadh", minPrice: 5500, maxPrice: 6500, modalPrice: 6000, priceDate: new Date("2026-01-30") },
     { cropName: "Chilli", variety: "Teja", mandiName: "Guntur", state: "Andhra Pradesh", district: "Guntur", minPrice: 12000, maxPrice: 15000, modalPrice: 13500, priceDate: new Date("2026-01-30") },
+    { cropName: "Gram (Chickpea)", variety: "Kabuli", mandiName: "Jaipur", state: "Rajasthan", district: "Jaipur", minPrice: 5000, maxPrice: 5800, modalPrice: 5400, priceDate: new Date("2026-01-30") },
+    { cropName: "Mustard", variety: "Yellow", mandiName: "Jaipur", state: "Rajasthan", district: "Jaipur", minPrice: 5400, maxPrice: 6200, modalPrice: 5800, priceDate: new Date("2026-01-30") },
+    { cropName: "Maize", variety: "Hybrid", mandiName: "Ludhiana", state: "Punjab", district: "Ludhiana", minPrice: 1700, maxPrice: 2100, modalPrice: 1900, priceDate: new Date("2026-01-30") },
+    { cropName: "Coconut", variety: "Mature", mandiName: "Thrissur", state: "Kerala", district: "Thrissur", minPrice: 45, maxPrice: 60, modalPrice: 50, priceDate: new Date("2026-01-30") },
+    { cropName: "Pepper", variety: "Black", mandiName: "Thrissur", state: "Kerala", district: "Thrissur", minPrice: 40000, maxPrice: 50000, modalPrice: 45000, priceDate: new Date("2026-01-30") },
   ];
 
   // Delete old mandi prices and insert fresh ones
@@ -468,6 +1188,16 @@ async function main() {
       validUntil: new Date("2026-02-15"),
     },
     {
+      cropName: "Wheat",
+      state: "Haryana",
+      district: "Karnal",
+      predictedPrice: 2480,
+      confidence: 0.83,
+      sellTimeSuggestion: "Good time to sell. Export demand from Bangladesh rising.",
+      factors: { supply: "moderate", demand: "high", export: "strong", season: "peak" },
+      validUntil: new Date("2026-02-20"),
+    },
+    {
       cropName: "Rice (Basmati)",
       state: "Maharashtra",
       district: "Pune",
@@ -476,6 +1206,16 @@ async function main() {
       sellTimeSuggestion: "Good time to sell. Wedding season demand is high.",
       factors: { supply: "moderate", demand: "very_high", export: "strong", festival: "wedding_season" },
       validUntil: new Date("2026-02-28"),
+    },
+    {
+      cropName: "Rice",
+      state: "Telangana",
+      district: "Hyderabad",
+      predictedPrice: 2900,
+      confidence: 0.80,
+      sellTimeSuggestion: "Export demand strong. Good time to sell.",
+      factors: { supply: "adequate", demand: "high", export: "bangladesh_vietnam" },
+      validUntil: new Date("2026-02-25"),
     },
     {
       cropName: "Tomatoes",
@@ -507,6 +1247,36 @@ async function main() {
       factors: { supply: "early_season", demand: "very_high", quality: "premium", export: "uae_dubai" },
       validUntil: new Date("2026-04-30"),
     },
+    {
+      cropName: "Cotton",
+      state: "Gujarat",
+      district: "Rajkot",
+      predictedPrice: 6800,
+      confidence: 0.82,
+      sellTimeSuggestion: "Textile demand rising. Good time to sell.",
+      factors: { supply: "moderate", demand: "high", industry: "textile", export: "china" },
+      validUntil: new Date("2026-03-31"),
+    },
+    {
+      cropName: "Groundnut",
+      state: "Gujarat",
+      district: "Junagadh",
+      predictedPrice: 6300,
+      confidence: 0.79,
+      sellTimeSuggestion: "Oil extraction demand stable. Fair prices expected.",
+      factors: { supply: "adequate", demand: "moderate", use: "oil_extraction", season: "post_harvest" },
+      validUntil: new Date("2026-03-20"),
+    },
+    {
+      cropName: "Gram (Chickpea)",
+      state: "Rajasthan",
+      district: "Jaipur",
+      predictedPrice: 5550,
+      confidence: 0.81,
+      sellTimeSuggestion: "Dal demand strong. Good prices expected.",
+      factors: { supply: "shortage", demand: "very_high", use: "dal_making", season: "peak" },
+      validUntil: new Date("2026-03-10"),
+    },
   ];
 
   await prisma.aIPrediction.deleteMany({});
@@ -525,6 +1295,14 @@ async function main() {
   console.log(`   - Ratings: ${ratings.length}`);
   console.log(`   - Mandi Prices: ${mandiPrices.length}`);
   console.log(`   - AI Predictions: ${aiPredictions.length}`);
+  console.log("\n🎯 Medium-Level Data Successfully Seeded!");
+  console.log("   ✓ 22 Active Users (12 buyers + 10 farmers)");
+  console.log("   ✓ 15 Diverse Crop Listings");
+  console.log("   ✓ 18 Realistic Bids");
+  console.log("   ✓ 11 Active Messages");
+  console.log("   ✓ 17 User Ratings");
+  console.log("   ✓ 26 Mandi Price Points");
+  console.log("   ✓ 10 AI Predictions");
 }
 
 main()
