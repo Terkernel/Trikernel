@@ -138,8 +138,7 @@ Simple, mobile-first UI with regional language readiness and future voice-based 
 
 ```bash
 # Clone the repository
-git clone <https://github.com/Terkernel/AgroPulse.git>
-cd agropulse
+git clone https://github.com/Terkernel/AgroPulse.gitcd agropulse
 
 # Install dependencies
 npm install
