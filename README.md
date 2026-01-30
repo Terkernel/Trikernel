@@ -106,23 +106,304 @@ Simple, mobile-first UI with regional language readiness and future voice-based 
 
 ---
 
+## � Complete Feature List
+
+### 🔐 **Authentication & User Management**
+- **Role-based Registration**: Separate sign-up flows for Farmers and Buyers
+- **NextAuth Integration**: Secure session management with JWT tokens
+- **Profile Management**: Create and update user profiles with profile pictures, contact details
+- **Two-Factor Authentication (2FA)**: Enhanced security with email/SMS OTP verification
+- **Security Audit**: Track login activity and authentication events
+- **User Verification**: Email verification on account creation
+- **Account Recovery**: Password reset functionality
+
+### 👨‍🌾 **Farmer Features**
+
+#### Crop Listing Management
+- **Create Listings**: Add new crop listings with detailed information
+  - Crop type, quality grade, quantity, price per unit
+  - Harvest date, storage method, delivery options
+  - Crop categorization (Grains, Vegetables, Fruits, etc.)
+- **Manage Active Listings**: View, edit, and delete existing listings
+- **Listing Statistics**: Track active listings, total sold, revenue generated
+- **Bulk Upload**: Support for uploading multiple listings at once
+
+#### AI-Powered Price Prediction
+- **Smart Price Suggestions**: AI recommends optimal pricing for new listings
+  - Based on crop type, quantity, current market trends
+  - Considers historical prices and demand patterns
+- **Price Trend Analysis**: View historical price movements
+- **Optimal Selling Time**: AI suggests when to sell for maximum profit
+- **Market Insights**: Understand demand patterns for different crops
+
+#### Bid Management
+- **Incoming Bids**: View and manage bids received from buyers
+  - Bid amount, buyer information, bid timestamp
+  - Accept/reject bid decisions
+- **Bid Analytics**: Track bid statistics (total bids, acceptance rate)
+- **Bid Notifications**: Real-time alerts for new incoming bids
+
+#### Direct Communication
+- **Messaging System**: Direct chat with interested buyers
+- **Real-time Messages**: Instant message delivery and synchronization
+- **Chat Search**: Find conversations with specific users
+- **Contact History**: View recent conversations and contacts
+- **Message Management**: Pin important messages, mark as read, delete messages
+- **Negotiation Support**: Discuss pricing and delivery terms directly
+
+#### Dashboard & Analytics
+- **Farmer Dashboard**: 
+  - Overview of active listings, pending bids, revenue
+  - Quick access to recent activity
+- **Recent Activity Feed**: Track recent bids and messages
+- **Performance Metrics**: Monitor selling success and buyer ratings
+
+#### AI Assistant Hub
+- **Disease Detection**: AI-powered crop disease identification and prevention tips
+- **Weather Analysis**: Local weather forecasting and impact on crops
+- **Price Comparison**: Compare mandi prices across different markets
+- **Soil Analysis**: Get soil health assessment and improvement recommendations
+- **Government Schemes**: Information about agricultural subsidies and schemes
+- **Negotiation Tips**: AI-powered negotiation guidance for better deals
+
+### 🏪 **Buyer Features**
+
+#### Browse & Search
+- **Crop Marketplace**: Browse all available crop listings
+- **Advanced Filtering**: Filter by:
+  - Crop category (Grains, Vegetables, Fruits, etc.)
+  - Location/State
+  - Price range
+  - Seller rating
+  - Quality grade
+- **Search Functionality**: Search by crop name or seller
+- **Sorting Options**: Sort by price, rating, newest listings
+- **Crop Details**: Detailed information on each listing with seller info
+
+#### Smart Bidding System
+- **Place Bids**: Submit bids on crop listings with custom amounts
+- **Bid Management**: Track all placed bids in one location
+- **My Bids Dashboard**: View bid status (pending, accepted, rejected)
+- **Bid History**: Access past bids and completed transactions
+- **Bid Statistics**: Monitor bid performance and success rate
+
+#### Intelligent Matchmaking
+- **Smart Recommendations**: AI-powered crop recommendations based on:
+  - Buyer preferences and purchase history
+  - Distance from farm location
+  - Quality requirements
+  - Budget constraints
+  - Trust score matching
+- **Personalized Suggestions**: Daily updated recommendations
+- **Confidence Scores**: See match quality ratings
+
+#### Direct Communication
+- **Message Buyers/Farmers**: Chat directly with sellers about crops
+- **Negotiation Support**: Discuss pricing, delivery, quantity
+- **Message History**: Keep conversation records
+- **Chat Notifications**: Get alerts for new messages
+
+#### Buyer Dashboard
+- **Shopping Overview**: Active bids, favorite crops, total spent
+- **Quick Actions**: Easy access to browse crops, place bids, market view
+- **Recommendations**: View personalized crop suggestions
+
+#### AI Assistant Hub
+- **Demand Forecasting**: Understand which crops are in demand
+- **Price Analysis**: Analyze price trends for procurement planning
+- **Quality Guidance**: Learn about different quality grades
+- **Supply Chain Tips**: Get best practices for agricultural sourcing
+- **Negotiation Support**: Tips for getting better deals
+
+### 📊 **Market Intelligence Hub**
+- **Live Mandi Prices**: Real-time government agricultural market prices
+  - Data from Data.gov.in AGMARKET API
+  - Price data across multiple states and mandis (markets)
+  - Last update timestamp for reference
+- **Price Comparison**: Compare prices across different mandis for same crop
+- **Trending Crops**: Identify high-demand crops with price trends
+- **Market Statistics**: 
+  - Total price records synced
+  - Number of unique crops tracked
+  - Average prices across markets
+  - Number of mandis monitored
+- **Price History**: View historical price movements and trends
+- **Market Forecasts**: AI predictions on upcoming price changes
+- **Data Refresh**: Manually sync latest prices from government APIs
+- **Export Analytics**: Download market data for analysis
+
+### 💬 **Messaging & Chat System**
+- **Real-Time Chat**: Send and receive messages instantly
+- **Search Users**: Find farmers or buyers by name
+- **Inbox**: View all conversations in one place
+- **Recent Contacts**: Quick access to frequently contacted users
+- **Message Status**: See when messages are delivered and read
+  - Single checkmark: Sent
+  - Double checkmark: Delivered and read
+- **Message Actions**:
+  - Pin important messages for quick reference
+  - React to messages with emoji
+  - Delete messages
+  - Archive conversations
+  - Mark as favorite
+- **Typing Indicators**: See when other user is typing
+- **Loading States**: Visual feedback during message operations
+- **Error Handling**: Graceful error messages if delivery fails
+
+### ⭐ **Rating & Trust System**
+- **User Ratings**: Rate farmers and buyers after transactions
+  - 5-star rating system
+  - Written reviews
+  - Verified badges for trusted users
+- **Trust Scores**: Calculate user trustworthiness based on:
+  - Number of transactions
+  - Average rating
+  - Response time
+  - Bid acceptance rate
+- **Review Visibility**: Show ratings and reviews on profiles
+- **Trust Indicators**: Visual badges for high-trust users
+
+### 🎯 **Smart Matchmaking Engine**
+- **Algorithm**: Intelligent matching based on:
+  - Geographic proximity
+  - Price expectations alignment
+  - Quality preferences
+  - Quantity requirements
+  - Trust score compatibility
+- **Personalized Matches**: Different recommendations for each user
+- **Match Confidence**: Show how well buyer and farmer align
+- **Dynamic Updates**: Recommendations refresh as profiles change
+
+### 🤖 **AI/ML Features**
+
+#### Google Gemini AI Integration
+- **Natural Language Processing**: Understand agricultural queries
+- **Context-Aware Responses**: Provide relevant agricultural advice
+- **Multi-topic Support**: Answer questions on various agricultural topics
+
+#### Price Prediction Engine
+- **Time-Series Analysis**: Predict future price movements
+- **Seasonal Patterns**: Account for crop seasonality
+- **Market Trends**: Consider overall market conditions
+- **Accuracy**: ML models trained on historical price data
+
+#### Market Intelligence
+- **Demand Forecasting**: Predict which crops will be in demand
+- **Crop Recommendations**: Suggest crops to sell based on market trends
+- **Optimal Pricing**: Calculate best price for maximum profit
+- **Seller Insights**: Provide actionable insights for farmers
+
+### 🌐 **Multi-Language Support**
+- **Supported Languages**: 
+  - English (en)
+  - Hindi (hi)
+  - Kannada (kn)
+  - Malayalam (ml)
+  - Marathi (mr)
+  - Tamil (ta)
+  - Telugu (te)
+- **Regional Language UI**: Full interface translation
+- **Language Persistence**: Remember user's language preference
+- **Dynamic Switching**: Change language without page reload
+
+### 📲 **Dashboard Features**
+
+#### Farmer Dashboard
+- **Quick Stats**: Active listings, pending bids, messages count
+- **New Listing CTA**: One-click access to create listings
+- **Recent Bids**: See latest bids on your products
+- **Active Listings Preview**: Quick view of your top 6 listings
+- **Quick Actions**: Links to AI assistant, market prices, messaging
+- **Rating & Reviews**: Your seller reviews and ratings
+
+#### Buyer Dashboard
+- **Quick Stats**: Active bids, favorite crops, total spent
+- **Browse CTA**: Quick access to crop marketplace
+- **Recommendations**: Personalized crop suggestions
+- **Recent Activity**: Latest bid activities
+- **Quick Actions**: Browse crops, market intelligence, AI help
+
+### 🔔 **Notifications System**
+- **Real-time Alerts**: Get notified of:
+  - New bid received (for farmers)
+  - Bid accepted/rejected (for buyers)
+  - New messages
+  - Rating received
+- **Notification Dropdown**: Quick access to recent notifications
+- **Notification Count**: Badge showing unread count
+- **Notification Management**: Clear old notifications
+
+### ⚙️ **User Settings & Preferences**
+- **Profile Settings**: Update personal information
+- **Account Security**: Change password, manage 2FA
+- **Notification Preferences**: Control alert settings
+- **Language Settings**: Choose preferred interface language
+- **Logout**: Secure session termination
+
+### 📦 **Product Management**
+- **Crop Categories**: Organized by type:
+  - 🌾 Grains
+  - 🥬 Vegetables
+  - 🍎 Fruits
+  - 🌰 Nuts & Seeds
+  - 🌽 Cash Crops
+- **Quality Grades**: Classification system (Grade A, B, C)
+- **Delivery Options**: Multiple delivery methods
+- **Storage Methods**: Track crop storage conditions
+
+### 🗺️ **Location-Based Features**
+- **State Selection**: Filter by Indian states
+- **Distance Calculation**: Show distance to farmers
+- **Location Filtering**: Find products near you
+- **Mandi Locations**: Track prices across multiple mandis
+- **Regional Preferences**: Customize by region
+
+### 📈 **Analytics & Reports**
+- **Personal Statistics**: Track your activity
+  - Revenue generated (farmers)
+  - Money spent (buyers)
+  - Transaction count
+  - Success rate
+- **Market Data Export**: Download for external analysis
+- **Trend Analysis**: Visualize price trends over time
+
+### 🔐 **Security & Privacy Features**
+- **Data Encryption**: Secure transmission of sensitive data
+- **Session Management**: Automatic logout on inactivity
+- **Audit Logs**: Track important account activities
+- **Password Security**: Bcrypt hashing for passwords
+- **API Security**: Protected endpoints with authentication
+
+### 📱 **Responsive Design**
+- **Mobile-First Approach**: Optimized for mobile and tablet
+- **Desktop Experience**: Full feature access on desktop
+- **Cross-Device Sync**: Seamless experience across devices
+- **Touch-Friendly UI**: Easy navigation on touch devices
+
+---
+
 ## 👥 Usability & Impact
 
 ### Target Users
-- 👨‍🌾 **Farmers**
-- 🏪 **Agricultural buyers** (retailers, wholesalers, exporters)
+- 👨‍🌾 **Farmers**: Small to medium-scale agricultural producers
+- 🏪 **Agricultural buyers**: Retailers, wholesalers, exporters, processors
 
 ### User Interaction
-| User | Actions |
+| User | Key Actions |
 |------|---------|
-| **Farmers** | View live prices, predictions, and list produce |
-| **Buyers** | Discover produce, bid in real-time, and negotiate directly |
+| **Farmers** | List crops → Receive bids → Negotiate → Direct chat → Get ratings |
+| **Buyers** | Browse crops → Place bids → Chat with farmers → Rate experience |
+| **Both** | View market intelligence → Get AI insights → Use AI assistant → Track transactions |
 
 ### Real-World Impact
-- ✅ **Increased farmer income** (20–40%)
-- ✅ **Reduced dependency** on intermediaries
-- ✅ **Faster market access**
+- ✅ **Increased farmer income** (20–40%) through fair pricing
+- ✅ **Reduced dependency** on intermediaries and middlemen
+- ✅ **Faster market access** with real-time connections
 - ✅ **Fair and transparent** agricultural trading ecosystem
+- ✅ **Data-driven decisions** using AI price predictions
+- ✅ **Reduced transaction time** through direct communication
+- ✅ **Quality assurance** with rating and verification system
+- ✅ **Market empowerment** through price intelligence
 
 ---
 
