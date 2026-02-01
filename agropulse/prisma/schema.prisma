@@ -144,10 +144,10 @@ model CropListing {
     
     cropName        String
     category        CropCategory
-    quantity        Float        // in quintals
+    quantity        Float        
     unit            String       @default("quintal")
-    expectedPrice   Float        // price per unit
-    minPrice        Float?       // minimum acceptable price
+    expectedPrice   Float        
+    minPrice        Float?       
     description     String?      @db.Text
     
     qualityGrade    String?
@@ -246,17 +246,16 @@ model MandiPrice {
     cropName    String
     variety     String?   
     
-    // Market info
     mandiName   String
     state       String
     district    String
     
-    // Prices
+   
     minPrice    Float
     maxPrice    Float
     modalPrice  Float    
     
-    // Date of price
+    
     priceDate   DateTime
     
     createdAt   DateTime @default(now())
