@@ -11,7 +11,6 @@ datasource db {
     url      = env("DATABASE_URL")
 }
 
-// ==================== ENUMS ====================
 
 enum UserRole {
     FARMER
@@ -43,7 +42,6 @@ enum CropCategory {
     OTHER
 }
 
-// ==================== USER & AUTH ====================
 
 model User {
     id            String    @id @default(cuid())
@@ -55,7 +53,6 @@ model User {
     phone         String?
     role          UserRole  @default(FARMER)
     
-    // Location fields
     address       String?
     city          String?
     state         String?
@@ -63,12 +60,10 @@ model User {
     latitude      Float?
     longitude     Float?
     
-    // Trust & ratings
     trustScore    Float     @default(0)
     totalRatings  Int       @default(0)
     avgRating     Float     @default(0)
     
-    // Security fields
     isActive              Boolean   @default(true)
     failedLoginAttempts   Int       @default(0)
     lockedUntil           DateTime?
@@ -80,17 +75,14 @@ model User {
     createdAt     DateTime  @default(now())
     updatedAt     DateTime  @updatedAt
 
-    // Relations
     accounts      Account[]
     sessions      Session[]
     
-    // Farmer relations
+
     cropListings  CropListing[]
     
-    // Buyer relations
     bids          Bid[]
     
-    // Messages
     sentMessages     Message[] @relation("SentMessages")
     receivedMessages Message[] @relation("ReceivedMessages")
     
@@ -104,7 +96,6 @@ model User {
     // Audit logs
     auditLogs      AuditLog[]
     
-    // Blockchain transactions
     blockchainTransactions BlockchainTransaction[]
 
     @@index([role])
