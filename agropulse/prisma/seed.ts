@@ -1,14 +1,10 @@
+
 import { PrismaClient } from "../generated/prisma";
-
 const prisma = new PrismaClient();
-
-// The main user ID to seed data for
 const MAIN_USER_ID = "cml0x03rg000ifp8odmtt8r46";
 
 async function main() {
   console.log("🌱 Starting database seed...");
-
-  // First, check if the main user exists
   const mainUser = await prisma.user.findUnique({
     where: { id: MAIN_USER_ID },
   });
@@ -34,11 +30,9 @@ async function main() {
     console.log(`✅ Main user found: ${mainUser.name} (${mainUser.role})`);
   }
 
-  // Create additional users (buyers and farmers) for interactions
   console.log("\n👥 Creating additional users...");
-  
   const additionalUsers = [
-    // Buyers (12 total)
+    
     {
       id: "buyer_seed_001",
       name: "Rajesh Kumar",
@@ -184,7 +178,7 @@ async function main() {
       totalRatings: 22,
     },
     
-    // Farmers (10 total)
+    
     {
       id: "farmer_seed_001",
       name: "Suresh Reddy",
@@ -316,11 +310,8 @@ async function main() {
   }
   console.log(`✅ Created ${additionalUsers.length} additional users`);
 
-  // Create Crop Listings for the main user (as farmer) and other farmers
   console.log("\n🌾 Creating crop listings...");
-  
   const cropListings = [
-    // Main user listings (5 crops)
     {
       id: "listing_seed_001",
       farmerId: MAIN_USER_ID,
@@ -432,7 +423,7 @@ async function main() {
       aiConfidenceScore: 0.88,
     },
     
-    // Farmer 1 listings (Suresh Reddy - Telangana)
+    
     {
       id: "listing_seed_006",
       farmerId: "farmer_seed_001",
@@ -476,7 +467,7 @@ async function main() {
       aiConfidenceScore: 0.80,
     },
     
-    // Farmer 2 listings (Meena Devi - Rajasthan)
+    
     {
       id: "listing_seed_008",
       farmerId: "farmer_seed_002",
@@ -520,7 +511,7 @@ async function main() {
       aiConfidenceScore: 0.75,
     },
     
-    // Farmer 3 listings (Harpreet Singh - Punjab)
+    
     {
       id: "listing_seed_010",
       farmerId: "farmer_seed_003",
@@ -564,7 +555,7 @@ async function main() {
       aiConfidenceScore: 0.84,
     },
     
-    // Farmer 4 listings (Lakshmi Amma - Kerala)
+    
     {
       id: "listing_seed_012",
       farmerId: "farmer_seed_004",
@@ -608,7 +599,7 @@ async function main() {
       aiConfidenceScore: 0.86,
     },
     
-    // Farmer 5 listings (Bhavesh Parmar - Gujarat)
+    
     {
       id: "listing_seed_014",
       farmerId: "farmer_seed_005",
@@ -662,11 +653,8 @@ async function main() {
   }
   console.log(`✅ Created ${cropListings.length} crop listings`);
 
-  // Create Bids on the listings
   console.log("\n💰 Creating bids...");
-  
   const bids = [
-    // Bids on main user listings
     {
       id: "bid_seed_001",
       listingId: "listing_seed_001",
@@ -728,7 +716,7 @@ async function main() {
       status: "PENDING" as const,
     },
     
-    // Bids on Farmer 1 listings
+    
     {
       id: "bid_seed_007",
       listingId: "listing_seed_006",
@@ -760,7 +748,7 @@ async function main() {
       status: "ACCEPTED" as const,
     },
     
-    // Bids on Farmer 2 listings
+    
     {
       id: "bid_seed_010",
       listingId: "listing_seed_008",
@@ -782,7 +770,7 @@ async function main() {
       status: "PENDING" as const,
     },
     
-    // Bids on Farmer 3 listings
+    
     {
       id: "bid_seed_012",
       listingId: "listing_seed_010",
@@ -814,7 +802,7 @@ async function main() {
       status: "PENDING" as const,
     },
     
-    // Bids on Farmer 4 listings
+    
     {
       id: "bid_seed_015",
       listingId: "listing_seed_012",
@@ -836,7 +824,7 @@ async function main() {
       status: "PENDING" as const,
     },
     
-    // Bids on Farmer 5 listings
+    
     {
       id: "bid_seed_017",
       listingId: "listing_seed_014",
@@ -868,11 +856,8 @@ async function main() {
   }
   console.log(`✅ Created ${bids.length} bids`);
 
-  // Create Messages
   console.log("\n💬 Creating messages...");
-  
   const messages = [
-    // Messages between main user and buyers
     {
       id: "msg_seed_001",
       senderId: "buyer_seed_001",
@@ -914,7 +899,7 @@ async function main() {
       createdAt: new Date("2026-01-29T09:00:00"),
     },
     
-    // Messages between farmer 1 and buyers
+    
     {
       id: "msg_seed_006",
       senderId: "buyer_seed_004",
@@ -932,7 +917,7 @@ async function main() {
       createdAt: new Date("2026-01-27T15:00:00"),
     },
     
-    // Messages between farmer 3 and buyers
+    
     {
       id: "msg_seed_008",
       senderId: "buyer_seed_010",
@@ -950,7 +935,7 @@ async function main() {
       createdAt: new Date("2026-01-29T11:00:00"),
     },
     
-    // Messages between farmer 4 and buyers
+    
     {
       id: "msg_seed_010",
       senderId: "buyer_seed_003",
@@ -978,11 +963,8 @@ async function main() {
   }
   console.log(`✅ Created ${messages.length} messages`);
 
-  // Create Ratings
   console.log("\n⭐ Creating ratings...");
-  
   const ratings = [
-    // Ratings for main user
     {
       id: "rating_seed_001",
       raterId: "buyer_seed_001",
@@ -1019,7 +1001,7 @@ async function main() {
       review: "Professional export buyer. Clear communication and prompt payment.",
     },
     
-    // Ratings for Farmer 1
+    
     {
       id: "rating_seed_006",
       raterId: "buyer_seed_004",
@@ -1042,7 +1024,7 @@ async function main() {
       review: "Excellent buyer. Professional and trustworthy.",
     },
     
-    // Ratings for Farmer 2
+    
     {
       id: "rating_seed_009",
       raterId: "buyer_seed_007",
@@ -1058,7 +1040,7 @@ async function main() {
       review: "Good mustard seeds. Competitive price.",
     },
     
-    // Ratings for Farmer 3
+    
     {
       id: "rating_seed_011",
       raterId: "buyer_seed_009",
@@ -1081,7 +1063,7 @@ async function main() {
       review: "Excellent buyer. Bulk orders handled smoothly.",
     },
     
-    // Ratings for Farmer 4
+    
     {
       id: "rating_seed_014",
       raterId: "buyer_seed_012",
@@ -1097,7 +1079,7 @@ async function main() {
       review: "Premium black pepper. GI certified. Excellent.",
     },
     
-    // Ratings for Farmer 5
+    
     {
       id: "rating_seed_016",
       raterId: "buyer_seed_004",
@@ -1123,37 +1105,34 @@ async function main() {
   }
   console.log(`✅ Created ${ratings.length} ratings`);
 
-  // Create Mandi Prices (Market Data)
   console.log("\n📊 Creating mandi prices...");
-  
   const mandiPrices = [
-    // Wheat prices - Multiple markets
     { cropName: "Wheat", variety: "Sharbati", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 2000, maxPrice: 2400, modalPrice: 2200, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "Lokwan", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 1900, maxPrice: 2300, modalPrice: 2100, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "Sharbati", mandiName: "Indore", state: "Madhya Pradesh", district: "Indore", minPrice: 2100, maxPrice: 2500, modalPrice: 2300, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "PBW", mandiName: "Karnal", state: "Haryana", district: "Karnal", minPrice: 2200, maxPrice: 2600, modalPrice: 2400, priceDate: new Date("2026-01-30") },
     { cropName: "Wheat", variety: "Sharbati", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 2150, maxPrice: 2550, modalPrice: 2350, priceDate: new Date("2026-01-30") },
     
-    // Rice prices - Multiple markets
+    
     { cropName: "Rice (Basmati)", variety: "1121", mandiName: "Karnal", state: "Haryana", district: "Karnal", minPrice: 4200, maxPrice: 4800, modalPrice: 4500, priceDate: new Date("2026-01-30") },
     { cropName: "Rice (Basmati)", variety: "Pusa", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 4000, maxPrice: 4600, modalPrice: 4300, priceDate: new Date("2026-01-30") },
     { cropName: "Rice", variety: "Regular", mandiName: "Hyderabad", state: "Telangana", district: "Hyderabad", minPrice: 2500, maxPrice: 3000, modalPrice: 2750, priceDate: new Date("2026-01-30") },
     { cropName: "Rice", variety: "Regular", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 2700, maxPrice: 3200, modalPrice: 2950, priceDate: new Date("2026-01-30") },
     
-    // Tomato prices
+    
     { cropName: "Tomatoes", variety: "Local", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 1500, maxPrice: 2200, modalPrice: 1800, priceDate: new Date("2026-01-30") },
     { cropName: "Tomatoes", variety: "Hybrid", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 1800, maxPrice: 2500, modalPrice: 2100, priceDate: new Date("2026-01-30") },
     { cropName: "Tomatoes", variety: "Local", mandiName: "Delhi", state: "Delhi", district: "New Delhi", minPrice: 1600, maxPrice: 2300, modalPrice: 1950, priceDate: new Date("2026-01-30") },
     
-    // Onion prices
+    
     { cropName: "Onions", variety: "Red", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 1000, maxPrice: 1500, modalPrice: 1200, priceDate: new Date("2026-01-30") },
     { cropName: "Onions", variety: "White", mandiName: "Lasalgaon", state: "Maharashtra", district: "Nashik", minPrice: 1100, maxPrice: 1600, modalPrice: 1350, priceDate: new Date("2026-01-30") },
     { cropName: "Onions", variety: "Red", mandiName: "Mumbai", state: "Maharashtra", district: "Mumbai", minPrice: 1200, maxPrice: 1700, modalPrice: 1450, priceDate: new Date("2026-01-30") },
     
-    // Mango prices
+    
     { cropName: "Mangoes (Alphonso)", variety: "Alphonso", mandiName: "Ratnagiri", state: "Maharashtra", district: "Ratnagiri", minPrice: 7500, maxPrice: 10000, modalPrice: 8500, priceDate: new Date("2026-01-30") },
     
-    // Pulses and More crops
+    
     { cropName: "Potato", variety: "Jyoti", mandiName: "Pune", state: "Maharashtra", district: "Pune", minPrice: 800, maxPrice: 1200, modalPrice: 1000, priceDate: new Date("2026-01-30") },
     { cropName: "Soybean", variety: "Yellow", mandiName: "Indore", state: "Madhya Pradesh", district: "Indore", minPrice: 4500, maxPrice: 5200, modalPrice: 4800, priceDate: new Date("2026-01-30") },
     { cropName: "Cotton", variety: "Long Staple", mandiName: "Rajkot", state: "Gujarat", district: "Rajkot", minPrice: 6000, maxPrice: 7000, modalPrice: 6500, priceDate: new Date("2026-01-30") },
@@ -1166,16 +1145,13 @@ async function main() {
     { cropName: "Pepper", variety: "Black", mandiName: "Thrissur", state: "Kerala", district: "Thrissur", minPrice: 40000, maxPrice: 50000, modalPrice: 45000, priceDate: new Date("2026-01-30") },
   ];
 
-  // Delete old mandi prices and insert fresh ones
   await prisma.mandiPrice.deleteMany({});
   await prisma.mandiPrice.createMany({
     data: mandiPrices,
   });
   console.log(`✅ Created ${mandiPrices.length} mandi prices`);
 
-  // Create AI Predictions
   console.log("\n🤖 Creating AI predictions...");
-  
   const aiPredictions = [
     {
       cropName: "Wheat",
@@ -1285,8 +1261,8 @@ async function main() {
   });
   console.log(`✅ Created ${aiPredictions.length} AI predictions`);
 
-  console.log("\n✅ Database seeding completed successfully!");
-  console.log("\n📋 Summary:");
+  console.log("\n Database seeding completed successfully!");
+  console.log("\n Summary:");
   console.log(`   - Main User ID: ${MAIN_USER_ID}`);
   console.log(`   - Additional Users: ${additionalUsers.length}`);
   console.log(`   - Crop Listings: ${cropListings.length}`);
@@ -1295,7 +1271,7 @@ async function main() {
   console.log(`   - Ratings: ${ratings.length}`);
   console.log(`   - Mandi Prices: ${mandiPrices.length}`);
   console.log(`   - AI Predictions: ${aiPredictions.length}`);
-  console.log("\n🎯 Medium-Level Data Successfully Seeded!");
+  console.log("\n Medium-Level Data Successfully Seeded!");
   console.log("   ✓ 22 Active Users (12 buyers + 10 farmers)");
   console.log("   ✓ 15 Diverse Crop Listings");
   console.log("   ✓ 18 Realistic Bids");
@@ -1310,7 +1286,7 @@ main()
     await prisma.$disconnect();
   })
   .catch(async (e) => {
-    console.error("❌ Seeding failed:", e);
+    console.error(" Seeding failed:", e);
     await prisma.$disconnect();
     process.exit(1);
   });
