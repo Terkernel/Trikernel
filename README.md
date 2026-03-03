@@ -9,6 +9,26 @@
 
 ---
 
+## 🐳 Run with Docker
+
+The application source is inside [agropulse](agropulse). To run with Docker:
+
+```bash
+cd agropulse
+docker compose up --build
+```
+
+App: `http://localhost:3000`  
+PostgreSQL: `localhost:5432`
+
+To stop:
+
+```bash
+docker compose down
+```
+
+---
+
 ## 📋 Project Details
 
 | Field | Details |

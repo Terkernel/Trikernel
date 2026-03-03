@@ -338,40 +338,7 @@ export default function AIAssistantPage() {
           </Card>
         </TabsContent>
 
-        {/* Schemes Tab */}
-        <TabsContent value="schemes" className="space-y-4">
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2"><FileText className="h-5 w-5 text-purple-600" />Government Scheme Matching</CardTitle>
-              <CardDescription>Find government schemes and subsidies you may be eligible for</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-                <div className="space-y-2"><Label>State</Label><Select value={schemeState} onValueChange={setSchemeState}><SelectTrigger><SelectValue placeholder="Select state" /></SelectTrigger><SelectContent>{STATES.map((s) => <SelectItem key={s} value={s}>{s}</SelectItem>)}</SelectContent></Select></div>
-                <div className="space-y-2"><Label>Farmer Type</Label><Select value={farmerType} onValueChange={(v: string) => setFarmerType(v as FarmerType)}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="marginal">Marginal (&lt;1 ha)</SelectItem><SelectItem value="small">Small (1-2 ha)</SelectItem><SelectItem value="medium">Medium (2-4 ha)</SelectItem><SelectItem value="large">Large (&gt;4 ha)</SelectItem></SelectContent></Select></div>
-                <div className="space-y-2"><Label>Land Size (acres)</Label><Input type="number" placeholder="E.g., 5" value={farmSize} onChange={(e: ChangeEvent<HTMLInputElement>) => setFarmSize(e.target.value)} /></div>
-                <div className="space-y-2"><Label>Crops Grown</Label><Input placeholder="E.g., Wheat, Rice" value={schemeCrops} onChange={(e: ChangeEvent<HTMLInputElement>) => setSchemeCrops(e.target.value)} /></div>
-              </div>
-              <Button onClick={() => schemeMatching.mutate({ state: schemeState, farmerType, landSize: parseFloat(farmSize) || 0, cropTypes: schemeCrops.split(",").map((c) => c.trim()).filter(Boolean) })} disabled={!schemeState || !farmSize || schemeMatching.isPending} className="w-full md:w-auto">
-                {schemeMatching.isPending ? <><Loader2 className="h-4 w-4 mr-2 animate-spin" />Finding Schemes...</> : <><Sparkles className="h-4 w-4 mr-2" />Find Schemes</>}
-              </Button>
-              {schemeMatching.data && (
-                <div className="mt-6 p-4 bg-purple-50 rounded-lg border border-purple-200 space-y-4">
-                  <h4 className="font-semibold flex items-center gap-2 text-purple-700"><FileText className="h-5 w-5" />Eligible Schemes ({schemeMatching.data.eligibleSchemes.length})</h4>
-                  {schemeMatching.data.eligibleSchemes.map((scheme: {name: string; description: string; benefit: string; howToApply: string}, i: number) => (
-                    <div key={i} className="p-3 bg-white rounded border">
-                      <h5 className="font-medium">{scheme.name}</h5>
-                      <p className="text-sm text-muted-foreground mt-1">{scheme.description}</p>
-                      <div className="mt-2 text-sm"><span className="font-medium">Benefit:</span> {scheme.benefit}</div>
-                      <div className="text-sm"><span className="font-medium">How to Apply:</span> {scheme.howToApply}</div>
-                    </div>
-                  ))}
-                  <div className="p-3 bg-purple-100 rounded"><span className="font-medium">Total Potential Benefit:</span> {schemeMatching.data.totalPotentialBenefit}</div>
-                </div>
-              )}
-            </CardContent>
-          </Card>
-        </TabsContent>
+        
 
         {/* Negotiate Tab */}
         <TabsContent value="negotiate" className="space-y-4">

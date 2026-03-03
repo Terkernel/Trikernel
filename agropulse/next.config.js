@@ -17,9 +17,6 @@ const config = {
   typescript: {
     ignoreBuildErrors: true, // ✅ Ignore TS errors during build for Vercel
   },
-  eslint: {
-    ignoreDuringBuilds: true, // ✅ Ignore ESLint errors during build for Vercel
-  },
   
   // Compression and caching
   compress: true,
