@@ -1,0 +1,420 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: multiapps
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: agropulse-secrets
+  namespace: multiapps
+type: Opaque
+stringData:
+  authSecret: change-me-before-production
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: agropulse-postgres-pvc
+  namespace: multiapps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agropulse-db
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agropulse-db
+  template:
+    metadata:
+      labels:
+        app: agropulse-db
+    spec:
+      containers:
+        - name: postgres
+          image: postgres:16-alpine
+          ports:
+            - containerPort: 5432
+          env:
+            - name: POSTGRES_USER
+              value: postgres
+            - name: POSTGRES_PASSWORD
+              value: postgres
+            - name: POSTGRES_DB
+              value: agropulse
+          volumeMounts:
+            - name: postgres-data
+              mountPath: /var/lib/postgresql/data
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "pg_isready -U postgres -d agropulse"]
+            initialDelaySeconds: 5
+            periodSeconds: 5
+      volumes:
+        - name: postgres-data
+          persistentVolumeClaim:
+            claimName: agropulse-postgres-pvc
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agropulse-db
+  namespace: multiapps
+spec:
+  selector:
+    app: agropulse-db
+  ports:
+    - port: 5432
+      targetPort: 5432
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: agropulse-app
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: agropulse-app
+  template:
+    metadata:
+      labels:
+        app: agropulse-app
+    spec:
+      containers:
+        - name: agropulse
+          image: agropulse:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+            - name: DATABASE_URL
+              value: postgresql://postgres:postgres@agropulse-db:5432/agropulse
+            - name: AUTH_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: agropulse-secrets
+                  key: authSecret
+            - name: AUTH_TRUST_HOST
+              value: "true"
+            - name: NEXT_PUBLIC_APP_URL
+              value: http://localhost:30000
+          command:
+            - sh
+            - -c
+            - npx prisma migrate deploy && npm run start
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 20
+            periodSeconds: 10
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 3000
+            initialDelaySeconds: 40
+            periodSeconds: 20
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: agropulse-app
+  namespace: multiapps
+spec:
+  type: NodePort
+  selector:
+    app: agropulse-app
+  ports:
+    - port: 3000
+      targetPort: 3000
+      nodePort: 30000
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: diet-planner-app
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: diet-planner-app
+  template:
+    metadata:
+      labels:
+        app: diet-planner-app
+    spec:
+      containers:
+        - name: diet-planner
+          image: diet-planner:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 5000
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: diet-planner-app
+  namespace: multiapps
+spec:
+  type: NodePort
+  selector:
+    app: diet-planner-app
+  ports:
+    - port: 5000
+      targetPort: 5000
+      nodePort: 30050
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: campusiq-app
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: campusiq-app
+  template:
+    metadata:
+      labels:
+        app: campusiq-app
+    spec:
+      containers:
+        - name: campusiq
+          image: campusiq:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: campusiq-app
+  namespace: multiapps
+spec:
+  type: NodePort
+  selector:
+    app: campusiq-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30081
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: polling-db-init
+  namespace: multiapps
+data:
+  init.sql: |
+    CREATE DATABASE IF NOT EXISTS polling_db;
+    USE polling_db;
+
+    CREATE TABLE IF NOT EXISTS polls (
+        poll_id INT PRIMARY KEY AUTO_INCREMENT,
+        question VARCHAR(500) NOT NULL
+    );
+
+    CREATE TABLE IF NOT EXISTS options (
+        option_id INT PRIMARY KEY AUTO_INCREMENT,
+        poll_id INT,
+        option_text VARCHAR(300) NOT NULL,
+        CONSTRAINT fk_options_poll FOREIGN KEY (poll_id) REFERENCES polls(poll_id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS votes (
+        vote_id INT PRIMARY KEY AUTO_INCREMENT,
+        option_id INT,
+        CONSTRAINT fk_votes_option FOREIGN KEY (option_id) REFERENCES options(option_id) ON DELETE CASCADE
+    );
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: polling-mysql-pvc
+  namespace: multiapps
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: polling-db
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: polling-db
+  template:
+    metadata:
+      labels:
+        app: polling-db
+    spec:
+      containers:
+        - name: mysql
+          image: mysql:8.4
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: yourpassword
+            - name: MYSQL_DATABASE
+              value: polling_db
+          volumeMounts:
+            - name: mysql-data
+              mountPath: /var/lib/mysql
+            - name: mysql-init
+              mountPath: /docker-entrypoint-initdb.d/init.sql
+              subPath: init.sql
+          readinessProbe:
+            exec:
+              command: ["sh", "-c", "mysqladmin ping -h localhost -uroot -pyourpassword"]
+            initialDelaySeconds: 15
+            periodSeconds: 10
+      volumes:
+        - name: mysql-data
+          persistentVolumeClaim:
+            claimName: polling-mysql-pvc
+        - name: mysql-init
+          configMap:
+            name: polling-db-init
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: polling-db
+  namespace: multiapps
+spec:
+  selector:
+    app: polling-db
+  ports:
+    - port: 3306
+      targetPort: 3306
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: online-polling-web
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: online-polling-web
+  template:
+    metadata:
+      labels:
+        app: online-polling-web
+    spec:
+      containers:
+        - name: online-polling
+          image: online-polling:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_HOST
+              value: polling-db
+            - name: DB_PORT
+              value: "3306"
+            - name: DB_NAME
+              value: polling_db
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: yourpassword
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: online-polling-web
+  namespace: multiapps
+spec:
+  type: NodePort
+  selector:
+    app: online-polling-web
+  ports:
+    - port: 8080
+      targetPort: 8080
+      nodePort: 30082
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pennyflow-app
+  namespace: multiapps
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pennyflow-app
+  template:
+    metadata:
+      labels:
+        app: pennyflow-app
+    spec:
+      containers:
+        - name: pennyflow
+          image: pennyflow:local
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 80
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 80
+            initialDelaySeconds: 5
+            periodSeconds: 10
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: pennyflow-app
+  namespace: multiapps
+spec:
+  type: NodePort
+  selector:
+    app: pennyflow-app
+  ports:
+    - port: 80
+      targetPort: 80
+      nodePort: 30080
